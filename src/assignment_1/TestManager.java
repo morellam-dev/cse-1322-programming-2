@@ -2,13 +2,13 @@ package assignment_1;
 import java.util.Scanner;
 
 class TestManager {
-    public Student[] students;
+    public Tests[] students;
 
     /** 
-     * Create a TestManager using a pre-defined array of Student
+     * Create a TestManager using a pre-defined array of Tests
      * @param newStudent An array of Tests objects
      */
-    public TestManager(Student[] newStudent) {
+    public TestManager(Tests[] newStudent) {
         this.students = newStudent.clone();
     }
     /**
@@ -17,9 +17,9 @@ class TestManager {
      * @param len The length of array to populate.
      */
     public TestManager(Scanner in, int len) {
-        students = new Student[len];
+        students = new Tests[len];
         for (int i = 0; i < len; i++) {
-            String prompt = "Student #" + (i + 1) + ": ";
+            String prompt = "Tests #" + (i + 1) + ": ";
             students[i] = inputStudent(in, prompt);
             System.out.println(students[i].toString());
         }
@@ -69,7 +69,7 @@ class TestManager {
      * @param prompt The message to display, like "Enter name: "
      * @return       A new Tests object with a populated scores array.
      */
-    public static Student inputStudent(Scanner in, String prompt) {
+    public static Tests inputStudent(Scanner in, String prompt) {
         System.out.println(prompt);
         String firstName = inputLine(in, "First name: ");
         String lastName = inputLine(in, "Last name: ");
@@ -77,7 +77,7 @@ class TestManager {
         for (int i = 0; i < 5; i++) {
             scores[i] = inputInt(in, "Enter score #" + i);
         }
-        return new Student(firstName, lastName, scores);
+        return new Tests(firstName, lastName, scores);
     }
 
     public static String tableHelper(String name, String scores, String avg, String grade) {
@@ -92,8 +92,8 @@ class TestManager {
         String tableHeader = tableHelper("Name", "Scores", "AVG", "Grade");
         System.out.println(tableHeader);
         // Table divider
-        System.out.println("======================================================");
-        for (Student student : students) {
+        System.out.println("=".repeat(55));
+        for (Tests student : students) {
             String tableRow = tableHelper(
                 student.getFullName(), // Name
                 student.getScoreList(), // Scores
@@ -107,17 +107,17 @@ class TestManager {
     
     public static void main(String[] args) {
         try (Scanner console = new Scanner(System.in)) {
-            Student[] exampleData = new Student[]{
-                new Student("Jack", "Johnson", new int[]{85, 83, 77, 91, 76}),
-                new Student("Lisa", "Aniston", new int[]{80, 90, 95, 93, 48}),
-                new Student("Andy", "Cooper", new int[]{78, 81, 11, 90, 73}),
-                new Student("Ravi", "Gupta", new int[]{92, 83, 30, 69, 87}),
-                new Student("Bonny", "Blair", new int[]{23, 45, 96, 38, 59}),
-                new Student("Danny", "Clark", new int[]{60, 85, 45, 39, 67}),
-                new Student("Samantha", "Kennedy", new int[]{77, 31, 52, 74, 83}),
-                new Student("Robin", "Bronson", new int[]{93, 94, 89, 77, 97}),
-                new Student("Sun", "Xie", new int[]{79, 85, 28, 93, 82}),
-                new Student("Kiran", "Patel", new int[]{85, 72, 49, 75, 63}),
+            Tests[] exampleData = new Tests[]{
+                new Tests("Jack", "Johnson", new int[]{85, 83, 77, 91, 76}),
+                new Tests("Lisa", "Aniston", new int[]{80, 90, 95, 93, 48}),
+                new Tests("Andy", "Cooper", new int[]{78, 81, 11, 90, 73}),
+                new Tests("Ravi", "Gupta", new int[]{92, 83, 30, 69, 87}),
+                new Tests("Bonny", "Blair", new int[]{23, 45, 96, 38, 59}),
+                new Tests("Danny", "Clark", new int[]{60, 85, 45, 39, 67}),
+                new Tests("Samantha", "Kennedy", new int[]{77, 31, 52, 74, 83}),
+                new Tests("Robin", "Bronson", new int[]{93, 94, 89, 77, 97}),
+                new Tests("Sun", "Xie", new int[]{79, 85, 28, 93, 82}),
+                new Tests("Kiran", "Patel", new int[]{85, 72, 49, 75, 63}),
             };
 
             TestManager example = new TestManager(exampleData);
