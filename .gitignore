@@ -1,2 +1,5 @@
 # VS Code Config
 .vscode
+# Testing Dir
+src/playground
+src/testing
