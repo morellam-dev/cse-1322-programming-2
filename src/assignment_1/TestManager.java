@@ -79,20 +79,21 @@ class TestManager {
         }
         return new Tests(firstName, lastName, scores);
     }
-
+    /** 
+     * Returns a formatted row 
+     */
     public static String tableHelper(String name, String scores, String avg, String grade) {
-        return String.format("%-20s %-20s %-5s %-5s", name, scores, avg, grade);
+        return String.format("%-25s %-20s %-5s %-5s", name, scores, avg, grade);
     }
 
     /** 
      * Print the full class data as a formatted table.
      */
-    public void display() {
-        // Table header: "Name <> Scores <> AVG <> GRADE"
-        String tableHeader = tableHelper("Name", "Scores", "AVG", "Grade");
+    public void displayTable() {
+        String tableHeader = tableHelper("Student", "Scores", "AVG", "Grade");
         System.out.println(tableHeader);
         // Table divider
-        System.out.println("=".repeat(55));
+        System.out.println("========================================================");
         for (Tests student : students) {
             String tableRow = tableHelper(
                 student.getFullName(), // Name
@@ -121,7 +122,7 @@ class TestManager {
             };
 
             TestManager example = new TestManager(exampleData);
-            example.display();
+            example.displayTable();
         }
     }
 }
