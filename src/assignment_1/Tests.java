@@ -3,36 +3,36 @@ package assignment_1;
  * A data-type which holds a student's name and their test scores.
  */
 
-class Student {
+class Tests {
     private String firstName, lastName;
     private int[] scores;
     
     /**
-     * Create a Student object using an array of scores
+     * Create a Tests object using an array of scores
      * @param firstName The student's first name
      * @param lastName The student's last name
      * @param scores An array of the student's test scores (0-100%)
      */
-    public Student(String firstName, String lastName, int ...scores) {
+    public Tests(String firstName, String lastName, int ...scores) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.scores = scores.clone();
     }
 
     /** 
-     * @return The Student's first name
+     * @return The student's first name
      */
     public String getFirstName() {
         return this.firstName;
     }  
     /**
-     * @return The Student's last name
+     * @return The student's last name
      */
     public String getLastName() {
         return this.lastName;
     }
     /** 
-     * @return The Student's first and last name, separated by a space
+     * @return The student's first and last name, separated by a space
      */
     public String getFullName() {
         return this.firstName + " " + this.lastName;
@@ -49,7 +49,7 @@ class Student {
         return list.trim();
     }
     /** 
-     * @return Average of the Student's test scores.
+     * @return the average of the student's test scores
      */
     public double getAverage() {
         int avg = 0;
@@ -59,7 +59,7 @@ class Student {
         return avg / scores.length;
     }
     /** 
-     * @return The letter grade corresponding to the Student's average
+     * @return the letter grade corresponding to the student's average
      */
     public String getLetterGrade() {
         double avg = getAverage();
@@ -92,7 +92,7 @@ class Student {
             letterGrade);
     }
     public static void main(String[] args) {
-        Student example = new Student("Firs", "Lasname", new int[]{0, 5, 1, 2, 3});
+        Tests example = new Tests("Firs", "Lasname", new int[]{0, 5, 1, 2, 3});
         System.out.println(example.toString());
     }
 }
