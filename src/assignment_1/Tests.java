@@ -92,7 +92,11 @@ class Tests {
             letterGrade);
     }
     public static void main(String[] args) {
-        Tests example = new Tests("", "Lasname", new int[]{98, 47, 85, 79, 82});
-        System.out.println(example.toString());
+        Tests stephenStrange = new Tests("Stephen", "Strange", new int[] { 98, 99, 95, 94, 90 });
+        System.out.println(stephenStrange.toString());
+        Tests magnusBurnsides = new Tests("Magnus", "Burnsides", new int[] { 43, 47, 62, 45, 64 });
+        System.out.println(magnusBurnsides.toString());
+        Tests barryBluejeans = new Tests("Barry", "Bluejeans", new int[] { 86, 89, 85, 85, 83 });
+        System.out.println(barryBluejeans.toString());
     }
 }
