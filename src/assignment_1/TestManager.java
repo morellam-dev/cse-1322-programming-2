@@ -1,6 +1,11 @@
 package assignment_1;
 import java.util.Scanner;
 
+/** 
+ * A program for manipulating a class of students 
+ * represented by Tests objects
+ */
+
 class TestManager {
     public Tests[] students;
 
@@ -19,7 +24,7 @@ class TestManager {
     public TestManager(Scanner in, int len) {
         students = new Tests[len];
         for (int i = 0; i < len; i++) {
-            String prompt = "Tests #" + (i + 1) + ": ";
+            String prompt = "Student #" + (i + 1) + ":\n";
             students[i] = inputStudent(in, prompt);
             System.out.println(students[i].toString());
         }
@@ -70,7 +75,7 @@ class TestManager {
      * @return       A new Tests object with a populated scores array.
      */
     public static Tests inputStudent(Scanner in, String prompt) {
-        System.out.println(prompt);
+        System.out.print(prompt);
         String firstName = inputLine(in, "First name: ");
         String lastName = inputLine(in, "Last name: ");
         int[] scores = new int[5];
@@ -90,7 +95,7 @@ class TestManager {
      * Print the full class data as a formatted table.
      */
     public void displayTable() {
-        String tableHeader = tableHelper("Student", "Scores", "AVG", "Grade");
+        String tableHeader = tableHelper("Name", "Scores", "AVG", "Grade");
         System.out.println(tableHeader);
         // Table divider
         System.out.println("========================================================");
@@ -121,7 +126,7 @@ class TestManager {
                 new Tests("Kiran", "Patel", new int[]{85, 72, 49, 75, 63}),
             };
 
-            TestManager example = new TestManager(exampleData);
+            TestManager example = new TestManager(console, 5);
             example.displayTable();
         }
     }
