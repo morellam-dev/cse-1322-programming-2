@@ -92,7 +92,7 @@ class Tests {
             letterGrade);
     }
     public static void main(String[] args) {
-        Tests example = new Tests("Firs", "Lasname", new int[]{0, 5, 1, 2, 3});
+        Tests example = new Tests("", "Lasname", new int[]{98, 47, 85, 79, 82});
         System.out.println(example.toString());
     }
 }
