@@ -1,8 +1,9 @@
 package assignment_1;
+import java.util.Scanner;
+
 /**
  * A data-type which holds a student's name and their test scores.
  */
-
 class Tests {
     private String firstName, lastName;
     private int[] scores;
@@ -92,11 +93,19 @@ class Tests {
             letterGrade);
     }
     public static void main(String[] args) {
+        System.out.println("===Tests Class Demo - Example students ====");
         Tests stephenStrange = new Tests("Stephen", "Strange", new int[] { 98, 99, 95, 94, 90 });
-        System.out.println(stephenStrange.toString());
         Tests magnusBurnsides = new Tests("Magnus", "Burnsides", new int[] { 43, 47, 62, 45, 64 });
-        System.out.println(magnusBurnsides.toString());
         Tests barryBluejeans = new Tests("Barry", "Bluejeans", new int[] { 86, 89, 85, 85, 83 });
+        System.out.println(stephenStrange.toString());
+        System.out.println(magnusBurnsides.toString());
         System.out.println(barryBluejeans.toString());
+        System.out.println();
+
+        // Input student via console
+        Scanner console = new Scanner(System.in);
+        Tests customStudent = TestManager.inputStudent(console, "===Custom Student - User input ====");
+        System.out.println(customStudent.toString());
+        System.out.println();
     }
 }
