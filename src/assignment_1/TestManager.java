@@ -75,7 +75,7 @@ class TestManager {
         String lastName = inputLine(in, "Last name: ");
         int[] scores = new int[5];
         for (int i = 0; i < 5; i++) {
-            scores[i] = inputInt(in, "Enter score #" + i);
+            scores[i] = inputInt(in, "Enter score #" + (i + 1) + ": ");
         }
         return new Tests(firstName, lastName, scores);
     }
