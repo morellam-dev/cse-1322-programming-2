@@ -18,6 +18,6 @@ public class MyDate {
      */
     @Override
     public String toString() {
-        return String.format("%4d-%2d-%2d", year, month, day);
+        return String.format("%04d-%02d-%02d", year, month, day);
     }
 }
