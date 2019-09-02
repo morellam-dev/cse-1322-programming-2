@@ -2,7 +2,7 @@ Max Morella
 
 ## Assignment 1A (Pseudocode)
 
-Live demo: https://repl.it/@MaxMorella/Assignment-1-Tests-and-TestManager
+See Java implementation and live demo at repl.it/@MaxMorella/Assignment-1-Tests-and-TestManager
 
 #### TestsPseudocode.txt
 ```java
