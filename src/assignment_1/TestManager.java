@@ -126,7 +126,7 @@ class TestManager {
                 new Tests("Kiran", "Patel", new int[]{85, 72, 49, 75, 63}),
             };
 
-            TestManager example = new TestManager(console, 5);
+            TestManager example = new TestManager(exampleData);
             example.displayTable();
         }
     }
