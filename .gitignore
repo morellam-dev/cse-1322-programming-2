@@ -1,5 +1,5 @@
 # VS Code Config
 .vscode
 
-*/.DS_Store
-*/*/.DS_Store
+# DS_Store files
+**/.DS_Store
