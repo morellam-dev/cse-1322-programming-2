@@ -1,5 +1,7 @@
-# VS Code Config
+# VS Code Files
 .vscode
+**.code-workspace
 
 # DS_Store files
 **/.DS_Store
+
