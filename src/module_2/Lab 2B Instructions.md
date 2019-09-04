@@ -10,11 +10,11 @@ To write a program using classes to demonstrate how abstract classes and interfa
 
 ### Problem Statement
 
-Write a class named Octagon that extends the abstract class GeometricObject and implements the interfaces Comparable and Cloneable. Assume that all eight sides of the octagon are of equal size. The area can be computed using the following formula: 
+Write a class named Octagon that extends the abstract class `GeometricObject` and implements the interfaces `Comparable` and `Cloneable`. Assume that all eight sides of the octagon are of equal size. The area can be computed using the following formula: 
 
  `area = (2+4/sqrt(2))*side*side`
 
-Write a test program that creates an `Octagon` object with the side value 8 and displays it's area and perimeter (to 2 decimal places). Create a new object using the `clone` method and create a method that compares the two objects (`Octagon` object and `clone` object) and returns true if all data elements are the same in both objects, false if any data object is different.
+Write a test program that creates an `Octagon` object with the side value 8 and displays its area and perimeter (to 2 decimal places). Create a new object using the `clone` method and create a method that compares the two objects (`Octagon` object and `clone` object) and returns true if all data elements are the same in both objects, false if any data object is different.
 
 ### What to Turn In
 
