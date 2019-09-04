@@ -3,7 +3,7 @@ package module_2.lab_2a;
 /**
  * PeopleTest: Demonstrate functionality of Employee, Faculty, PeopleTest
  */
-public class PeopleTest {
+public class Main {
     public static void main(String[] args) {
         // Person demo
         Person johnEgbert = new Person(
