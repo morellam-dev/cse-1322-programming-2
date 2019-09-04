@@ -7,8 +7,7 @@ import java.util.Arrays; // Arrays.sort() is used to sort input arrays
  */
 public class BinarySearch {
 
-  /**
-   * Performs a recursive binary search and returns the index of the given key
+  /** Performs a recursive binary search and returns the index of the given key
    * If no key is found, then return -(i + 1)
    * @param arr An array of integers to search
    * @param key The value being searched for
@@ -19,8 +18,7 @@ public class BinarySearch {
     Arrays.sort(sorted);
     return binarySearchHelper(sorted, key, 0, sorted.length);
   }
-  /** 
-   * Recursively iterate over smaller and smaller subarrays
+  /** Recursively iterate over smaller and smaller subarrays.
    * Pre-condition: The array is sorted
    * @param arr The array to search
    * @param key The value to search for
@@ -28,30 +26,19 @@ public class BinarySearch {
    * @param end The index to stop searching at
    */
   public static int binarySearchHelper(int[] arr, int key, int start, int end) {
-    // i: Insertion point, located at the midpoint of the subarray.
-    int i = (start + end) / 2;
-
-    // End case 1: KEY was found
-    if (arr[i] == key)
+    int i = (start + end) / 2; // Insertion point @ midpoint of subarray
+    if (arr[i] == key)    // End case 1: KEY was found
       return i;
-    // End case 2: KEY was not found
-    if (start >= end)
+    if (start >= end)     // End case 2: KEY was not found
       return -(i + 1);
-    // Recursive case 1: If key is before the index
-    if (key < arr[i]) {
-      // Search again on range [start...i)
+    if (key < arr[i])     // Recursive case 1: If key is before the index
       return binarySearchHelper(arr, key, start, i - 1);
-    }
-    // Recursive case 2: The key is after the index
-    if (arr[i] < key)
-      // Search again on range (i...end]
+    if (arr[i] < key)     // Recursive case 2: The key is after the index
       return binarySearchHelper(arr, key, i + 1, end);
-    // This code should be unreachable under normal circumstances
     return -(i + 1);
   }
 
-  /**
-   * Generate an array filled with random integer values
+  /** Generate an array filled with random integer values
    * Implementation copied from my response to previous lab module
    * @param len The desired length of the random array
    * @param min The lower bound of values to use
@@ -67,9 +54,14 @@ public class BinarySearch {
     return arr;
   }
 
+  /** Demonstration program */
   public static void main(String[] args) {
-    // int[] nums = new int[]{10, 12, 13, 14, 15, 16, 17};
-    int[] data = randomArray(20, -100, 100);
+    int[] nums = new int[]{1, 4, 4, 22, -5, 10, 21, -47, 23};
+    System.out.println("nums[] : " + Arrays.toString(nums));
+    System.out.println("binarySearch(nums, 10) => " + binarySearch(nums, 10));
+    System.out.println();
+
+    int[] data = randomArray(20, -11, 11);
     Arrays.sort(data);
     System.out.println("int[] data: " + Arrays.toString(data));
     System.out.println("binarySearch(data, 10) => " + binarySearch(data, 10));
