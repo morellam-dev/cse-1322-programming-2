@@ -1,7 +1,7 @@
 package module_2.lab_2a;
 
 /**
- * PeopleTest
+ * PeopleTest: Demonstrate functionality of Employee, Faculty, PeopleTest
  */
 public class PeopleTest {
     public static void main(String[] args) {
@@ -11,7 +11,7 @@ public class PeopleTest {
             "999 Sample Street", 
             "123-456-7890", 
             "ectoBiologist@pesterchum.net");
-        System.out.println(johnEgbert.toString());
+        johnEgbert.display();
         System.out.println();
 
         // Student demo
@@ -19,8 +19,8 @@ public class PeopleTest {
             "420 Wicked Lane", 
             "420-555-6969", 
             "coolguy6969@radical.biz",
-            /* classStatus: */ "senior");
-        System.out.println(daveStrider.toString());
+            "senior");
+        daveStrider.display();
         System.out.println();
 
         // Employee demo
@@ -30,10 +30,11 @@ public class PeopleTest {
             "413-612-0101",
             "g4llowsCallibrator@troll.ian",
             "Room BR34K-H34DS", 
-            "$41,309", 
-            new MyDate(2011, 11, 11));
+            "$612612", 
+            new MyDate(2009, 04, 13));
         
-        System.out.println(tereziPyrope.toString());
+            
+        tereziPyrope.display();
         System.out.println();
 
         Faculty principalSkinner = new Faculty(
@@ -47,7 +48,7 @@ public class PeopleTest {
             "MTWRF - 9am – 5pm",
             "Principal"
         );
-        System.out.println(principalSkinner.toString());
+        principalSkinner.display();
         System.out.println();
 
         Staff janitorScruffy = new Staff(
@@ -60,7 +61,7 @@ public class PeopleTest {
             new MyDate(3000, 01, 01),
             "Janitor"
         );
-        System.out.println(janitorScruffy.toString());
+        janitorScruffy.display();
         System.out.println();
 
     }

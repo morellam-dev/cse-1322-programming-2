@@ -27,11 +27,10 @@ public class Employee extends Person {
         this.dateHired = dateHired;
     }
 
-    @Override
-    public String toString() {
-        return super.toString() + "\n" 
-            + "OFFICE: " + office + "\n"
-            + "SALARY: " + salary + "\n"
-            + "HIRE DATE: " + dateHired.toString();
+    public void display() {
+        super.display(); // Name
+        System.out.println("Office: " + office + "");
+        System.out.println("Salary: " + salary);
+        System.out.println("Hire Date: " + dateHired.toString());
     }
 }
