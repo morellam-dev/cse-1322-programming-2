@@ -8,6 +8,18 @@ import java.util.Arrays; // Arrays.toString(int[]) is used to print array conten
 public class LinearSearch {
   /**
    * Performs a linear search and returns the index of the key
+   * 
+   * @param arr An array of integers to search
+   * @param key The value being searched for
+   * @return The first index where key appears. Returns -1 if not found.
+   */
+  public static int linearSearch(int[] arr, int key) {
+    return linearSearch(arr, key, 0);
+  }
+
+  /**
+   * Performs a linear search starting at a certain index.
+   * 
    * @param arr An array of integers to search
    * @param key The value being searched for
    * @param start The index to begin searching at (inclusive)
@@ -21,13 +33,12 @@ public class LinearSearch {
     }
     return -1;
   }
-  public static int linearSearch(int[] arr, int key) {
-    return linearSearch(arr, key, 0);
-  }
-
+  
   /**
    * Search an array for a key, and print all results
    * If more than one result, also print the number of results found
+   * @param arr The array to search
+   * @param key The value to search for
    */
   public static void linearSearchDemo(int[] arr, int key) {
     int index = -1;
