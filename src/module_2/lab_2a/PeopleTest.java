@@ -28,8 +28,8 @@ public class PeopleTest {
             "Terezi Pyrope",
             "612 Alternia Drive",
             "413-612-0101",
-            "gallowsCallibrator@troll.ian",
-            "Room BR3-4KH-34DS", 
+            "g4llowsCallibrator@troll.ian",
+            "Room BR34K-H34DS", 
             "$41,309", 
             new MyDate(2011, 11, 11));
         
@@ -39,7 +39,7 @@ public class PeopleTest {
         Faculty principalSkinner = new Faculty(
             "Seymour Skinner",
             "123 Springfield Lane",
-            "BR3-4KH-34DS",
+            "789-555-8080",
             "steamed.hams@springfield.edu",
             "Room H4-M5", 
             "$123,456", 
@@ -53,8 +53,8 @@ public class PeopleTest {
         Staff janitorScruffy = new Staff(
             "Scruffy the Janitor",
             "4321 New New York",
-            "BR3-4KH-34DS",
-            "steamed.hams@springfield.edu",
+            "555-555-5555",
+            "scruffy.the.janitor@planetexpress.com",
             "JC-3000", 
             "$12,345", 
             new MyDate(3000, 01, 01),
