@@ -20,9 +20,8 @@ public class Student extends Person {
         this.classStatus = classStatus;
     }
 
-    @Override
-    public String toString() {
-        return super.toString() + "\n"
-            + "CLASS: " + classStatus;
+    public void display() {
+        super.display();
+        System.out.println("Class: " + classStatus);
     }
 }

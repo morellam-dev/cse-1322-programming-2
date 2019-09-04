@@ -13,9 +13,8 @@ public class Staff extends Employee {
         this.title = title;
     }
 
-    @Override
-    public String toString() {
-        return super.toString() + "\n" 
-            + "TITLE: " + title;
+    public void display() {
+        super.display();
+        System.out.println("Title: " + title);
     }
 }
