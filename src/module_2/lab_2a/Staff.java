@@ -13,8 +13,13 @@ public class Staff extends Employee {
         this.title = title;
     }
 
-    public void display() {
-        super.display();
-        System.out.println("Title: " + title);
+    @Override
+    /** @return the Staff's title attribute */
+    public String getType() {
+        if (!this.title.matches("")) {
+            return this.title;
+        } else {
+            return super.getType();
+        }
     }
 }
