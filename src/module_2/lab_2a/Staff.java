@@ -15,11 +15,11 @@ public class Staff extends Employee {
 
     @Override
     /** @return the Staff's title attribute */
-    public String getType() {
+    public String getTitle() {
         if (!this.title.matches("")) {
             return this.title;
         } else {
-            return super.getType();
+            return super.getClassName();
         }
     }
 }
