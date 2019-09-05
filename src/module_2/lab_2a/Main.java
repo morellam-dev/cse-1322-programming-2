@@ -1,17 +1,15 @@
 package module_2.lab_2a;
-
 import java.io.IOException;
 
 /**
  * PeopleTest: Demonstrate functionality of Employee, Faculty, PeopleTest
  */
 public class Main {
+
     public static void displayPause() {
         try {
-            System.out.print("Press enter to proceed...");
             System.in.read();
-        } catch (IOException ex) {
-        }
+        } catch (IOException e) {}
     }
     public static void main(String[] args) {
         // Declare one example Person of each type 
@@ -65,14 +63,21 @@ public class Main {
             )
         };
 
+        // Demo functionality
         while (true) {
             for (Person person : people) {
-                System.out.println("\n=== OOP Demonstration: Person Class===\n" 
-                    + "Press ENTER key to cycle through sample data\n");
+                // PRINT all class fields
                 person.display();
-                displayPause();
                 System.out.println();
                 
+                // PRINT some instructions
+                System.out.println("=== OOP Demonstration: " + person.getClassName() + " Class===");
+                    
+                // PAUSE for input
+                System.out.print("Press Enter to continue...");
+                displayPause();
+
+                System.out.println();
             }
         }
     }
