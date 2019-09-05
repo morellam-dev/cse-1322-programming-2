@@ -29,7 +29,7 @@ public class Faculty extends Employee {
 
     public void display() {
         super.display();
-        System.out.println("Office Hours: " + officeHours);
-        System.out.println("Rank: " + rank);
+        System.out.println("🕒  Office Hours: " + officeHours);
+        System.out.println("📎  Rank: " + rank);
     }
 }

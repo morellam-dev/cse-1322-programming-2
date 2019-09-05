@@ -22,6 +22,6 @@ public class Student extends Person {
 
     public void display() {
         super.display();
-        System.out.println("Class: " + classStatus);
+        System.out.println("📚  Class Status: " + classStatus);
     }
 }
