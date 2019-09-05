@@ -29,8 +29,8 @@ public class Employee extends Person {
 
     public void display() {
         super.display(); // Name
-        System.out.println("Hire Date: " + dateHired.toString());
-        System.out.println("Salary: " + salary);
-        System.out.println("Office: " + office + "");
+        System.out.println("📅  Hire Date: " + dateHired.toString());
+        System.out.println("💵  Salary: " + salary);
+        System.out.println("💼  Office: " + office + "");
     }
 }

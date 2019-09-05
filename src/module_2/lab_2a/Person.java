@@ -39,9 +39,9 @@ public class Person {
     
     /** Print out all of the person's data */
     public void display() {
-        System.out.println("👤  " + this.name + " (" + this.getType() + ")");
-        System.out.println("🏠  " + address);
-        System.out.println("📞  " + phoneNumber);
-        System.out.println("✉️  " + emailAddress);
+        System.out.println("👤  " + this.getType().toUpperCase() + ": " + this.name);
+        System.out.println("🏠  Address: " + address);
+        System.out.println("📞  Phone: " + phoneNumber);
+        System.out.println("✉️  Email: " + emailAddress);
     }
 }
