@@ -39,8 +39,8 @@ public class Person {
     /** Print the  */
     public void display() {
         System.out.println("👤  " + this.getName() + " (" + this.getType() + ")");
-        System.out.println("\t🏠  " + address);
-        System.out.println("\t📞  " + phoneNumber);
-        System.out.println("\t✉️  " + emailAddress);
+        System.out.println("🏠  " + address);
+        System.out.println("📞  " + phoneNumber);
+        System.out.println("✉️  " + emailAddress);
     }
 }
