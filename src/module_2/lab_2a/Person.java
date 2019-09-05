@@ -36,9 +36,10 @@ public class Person {
     public String getType() {
         return this.getClass().getSimpleName();
     }
-    /** Print the  */
+    
+    /** Print out all of the person's data */
     public void display() {
-        System.out.println("👤  " + this.getName() + " (" + this.getType() + ")");
+        System.out.println("👤  " + this.name + " (" + this.getType() + ")");
         System.out.println("🏠  " + address);
         System.out.println("📞  " + phoneNumber);
         System.out.println("✉️  " + emailAddress);
