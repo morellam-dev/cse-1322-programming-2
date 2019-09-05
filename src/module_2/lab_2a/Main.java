@@ -64,11 +64,16 @@ public class Main {
                 "Janitor"
             )
         };
-        for (Person person : people) {
-            person.display();
-            displayPause();
-            System.out.println();
-            
+
+        while (true) {
+            for (Person person : people) {
+                System.out.println("\n=== OOP Demonstration: Person Class===\n" 
+                    + "Press ENTER key to cycle through sample data\n");
+                person.display();
+                displayPause();
+                System.out.println();
+                
+            }
         }
     }
 }
