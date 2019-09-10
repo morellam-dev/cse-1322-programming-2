@@ -85,28 +85,28 @@ class TestManager {
         return new Tests(firstName, lastName, scores);
     }
     /** 
-     * Returns a formatted row 
+     * Prints a formatted Row
      */
-    public static String tableHelper(String name, String scores, String avg, String grade) {
-        return String.format("%-25s %-20s %-5s %-5s", name, scores, avg, grade);
+    public static void printTableRow(String name, String scores, String avg, String grade) {
+        System.out.printf("%-25s %-20s %-5s %-5s", name, scores, avg, grade);
+        System.out.println();
     }
 
     /** 
      * Print the full class data as a formatted table.
      */
     public void displayTable() {
-        String tableHeader = tableHelper("Name", "Scores", "AVG", "Grade");
-        System.out.println(tableHeader);
+        // Header
+        printTableRow("Name", "Scores", "AVG", "Grade");
         // Table divider
         System.out.println("========================================================");
         for (Tests student : students) {
-            String tableRow = tableHelper(
+            printTableRow(
                 student.getFullName(), // Name
                 student.getScoreList(), // Scores
                 student.getAverage() + "", // Average
                 student.getLetterGrade() // Grade
             );
-            System.out.println(tableRow);
         }
         System.out.println("Class Average: " + this.getClassAverage());
     }
