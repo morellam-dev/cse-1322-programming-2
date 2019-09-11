@@ -1,11 +1,10 @@
 package module_2.assignment_2;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
- * ConsoleApp
  * Provides helper methods for reading user input from the console.
- * Allows for input validation and default values
  */
 public class ConsoleApp {
     public static final Scanner console = new Scanner(System.in);
@@ -91,5 +90,53 @@ public class ConsoleApp {
                 System.out.println("ERROR: input must be a valid double");
             }
         }
+    }
+
+
+    /**
+     * Prompt the user to input several fields, then construct an
+     * <code>InclusiveVacation</code> using them
+     * 
+     * @param prompt The text to show before the user's input
+     * @return an <code>InclusiveVacation</code> object with its fields filled via
+     *         user input
+     */
+    public static InclusiveVacation inputInclusive(String prompt) {
+        System.out.print(prompt);
+        return new InclusiveVacation(
+                inputString("Enter destination: "), 
+                inputDouble("Enter budget: $"),
+                inputDouble("Enter price: $"), inputString("Enter brand: "),
+                inputIntWithinRange("Enter rating (0-5 stars): ", 0, 5)
+        );
+    }
+
+    /**
+     * Prompt the user to input several fields, then construct a
+     * <code>PiecemealVacation</code> using them
+     * 
+     * @param prompt The text to show before the user's input
+     * 
+     * @return a <code>PiecemealVacation</code> object with its fields filled via
+     *         user input
+     */
+    public static PiecemealVacation inputPiecemeal(String prompt) {
+        System.out.print(prompt);
+        String destination = inputString("Enter destination: ");
+        double budget = inputDouble("Enter budget: $");
+
+        HashMap<String, Double> items = new HashMap<>();
+        for (int i = 0; i < 5; i++) {
+            if (i != 0) {
+                System.out.println("Press enter when finished");
+            }
+            String item = inputString("Enter item #" + (i + 1) + ": ");
+            if (item.matches("")) {
+                break;
+            }
+            Double price = inputDouble("Enter " + item + " price: $");
+            items.put(item, price);
+        }
+        return new PiecemealVacation(destination, budget, items);
     }
 }
