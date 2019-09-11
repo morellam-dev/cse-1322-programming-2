@@ -20,9 +20,10 @@ public class Student extends Person {
         this.classStatus = classStatus;
     }
 
-    @Override
-    public void display() {
-        super.display();
-        System.out.println("📚  Class Status: " + classStatus);
+    public String toString() {
+        return (
+            super.toString() + "\n"
+                + "📚  Class Status: " + classStatus
+        );
     }
 }

@@ -27,10 +27,11 @@ public class Faculty extends Employee {
         this.rank = rank;
     }
 
-    @Override
-    public void display() {
-        super.display();
-        System.out.println("🕒  Office Hours: " + officeHours);
-        System.out.println("📎  Rank: " + rank);
+    public String toString() {
+        return (
+            super.toString() + "\n"
+                + "🕒  Office Hours: " + officeHours + "\n"
+                + "📎  Rank: " + rank
+        );
     }
 }

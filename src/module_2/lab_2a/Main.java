@@ -66,12 +66,13 @@ public class Main {
         // Demo functionality
         while (true) {
             for (Person person : people) {
+                System.out.println("\n\n\n\n\n\n\n\n");
                 // PRINT all class fields
-                person.display();
-                System.out.println();
+                System.out.println(person.toString());
+                
                 
                 // PRINT some instructions
-                System.out.println("=== OOP Demonstration: " + person.getClassName() + " Class===");
+                System.out.println("=== OOP Demonstration: " + person.getClassName() + " Class ===");
                     
                 // PAUSE for input
                 System.out.print("Press Enter to continue...");

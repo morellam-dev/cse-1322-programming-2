@@ -38,10 +38,13 @@ public class Person {
     }
     
     /** Print out all of the person's data */
-    public void display() {
-        System.out.println("👤  " + this.getTitle().toUpperCase() + ": " + this.name);
-        System.out.println("🏠  Address: " + address);
-        System.out.println("📞  Phone: " + phoneNumber);
-        System.out.println("✉️  Email: " + emailAddress);
+    @Override
+    public String toString() {
+        return (
+            "👤  " + this.getTitle().toUpperCase() + ": " + this.name + "\n"
+                + "🏠  Address: " + address + "\n"
+                + "📞  Phone: " + phoneNumber + "\n"
+                + "✉️  Email: " + emailAddress
+        );
     }
 }
