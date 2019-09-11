@@ -26,7 +26,8 @@ public class Employee extends Person {
         this.salary = salary;
         this.dateHired = dateHired;
     }
-
+    
+    @Override
     public void display() {
         super.display(); // Name
         System.out.println("📅  Hire Date: " + dateHired.toString());

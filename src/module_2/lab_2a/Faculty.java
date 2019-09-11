@@ -24,9 +24,10 @@ public class Faculty extends Employee {
         String officeHours, String rank) {
         super(name, address, phone, email, office, salary, dateHired);
         this.officeHours = officeHours;
-        this.rank = rank;        
+        this.rank = rank;
     }
 
+    @Override
     public void display() {
         super.display();
         System.out.println("🕒  Office Hours: " + officeHours);
