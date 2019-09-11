@@ -26,12 +26,13 @@ public class Person {
         this.emailAddress = emailAddress;
     }
 
-    /** Get's the name of this object's class or sub-class
+    /** Gets the name of this object's class or sub-class
      * @return a class name like <code>"Person"</code> or <code>"Student"</code>*/
     public String getClassName() {
         return this.getClass().getSimpleName();
     }
-    /** @return an appropriate label for the person. */
+    /** @return an appropriate label for the person's type/role 
+     * such as <code>Person</code> or <code>Student</code> */
     public String getTitle() {
         return this.getClassName();
     }
