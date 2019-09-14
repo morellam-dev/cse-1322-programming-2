@@ -38,16 +38,26 @@ public abstract class Vacation {
         return getBudget() - getTotalCost();
     }
 
+    /** @return A sentence declaring whether the vacation is over or under budget */
+    public String getSurplusString() {
+        if (this.getSurplus() >= 0)
+            return "You have " + moneyFormat(getSurplus()) + " leftover.";
+        else
+            return "You are " + moneyFormat(Math.abs(getSurplus())) + " over budget!";
+    }
+
     /**
      * @param n A number (in dollars) to convert for a display format 
      * @return a <code>String</code> formatted as US currency, such as <code>"$1,500.00"</code> */
     public static String moneyFormat(double n) {
-        NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
-        return format.format(n);
+        NumberFormat dollarFormat = NumberFormat.getCurrencyInstance(Locale.US);
+        return dollarFormat.format(n);
     }
 
     /** Print out all relevant class information */
     public abstract void display();
     
+    @Override
+    public abstract String toString();
 
 }

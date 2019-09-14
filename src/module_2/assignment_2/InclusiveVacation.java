@@ -1,5 +1,7 @@
 package module_2.assignment_2;
 
+import java.util.StringJoiner;
+
 /**
  * All-Inclusive Vacation
  */
@@ -25,7 +27,7 @@ public class InclusiveVacation extends Vacation {
             this.brand = brand;
             this.rating = rating;
     }
-    @Override
+    
     public double getTotalCost() {
         return this.price;
     }
@@ -36,15 +38,15 @@ public class InclusiveVacation extends Vacation {
      * @param star The character to represent filled stars (ex: <code>"★"</code>)
      * @param noStar The character to represent unfilled stars (ex: <code>"☆"</code>)
      */
-    public String starsToString(int stars, int total, String star, String noStar) {
-        String out = "";
-        for (int i = 1; i <= rating; i++) {
-            out += star;
+    public static String starString(int stars, int total, String star, String noStar) {
+        StringJoiner joiner = new StringJoiner("");
+        for (int i = 1; i <= stars; i++) {
+            joiner.add(star);
         }
-        for (int i = rating + 1; i <= total; i++) {
-            out += noStar;
+        for (int i = stars + 1; i <= total; i++) {
+            joiner.add(noStar);
         }
-        return out;
+        return joiner.toString();
     }
     /**
      * Display a number of stars using Emoji or Unicode characters
@@ -52,26 +54,26 @@ public class InclusiveVacation extends Vacation {
      * @param stars  The number of stars to show filled
      * @param total  The total number of stars to show
      */
-    public String starsToString(int stars, int total) {
-        return starsToString(stars, total, "★", "☆");
+    public static String starString(int stars, int total) {
+        return starString(stars, total, "★", "☆");
     }
-
     /** @return the star rating as a   */
     public String getRatingStars() {
-        return starsToString(rating, 5);
+        return starString(rating, 5);
     }
 
     public void display() {
-        System.out.println("DESTINATION: " + getDestination());
-        System.out.println("BRAND: " + brand);
-        System.out.println("RATING: " + getRatingStars());
-        System.out.println("BUDGET: " + moneyFormat(getBudget()));
-        System.out.println("PRICE: " + moneyFormat(getTotalCost()));
-        if (0 <= getSurplus()) {
-            System.out.println("You have " + moneyFormat(getSurplus()) + " leftover.");
-        }
-        if (getSurplus() < 0) {
-            System.out.println("You are " + moneyFormat(Math.abs(getSurplus())) + " over budget!");
-        }
+        System.out.println(this.toString());
+    }
+    @Override
+    public String toString() {
+        StringJoiner joiner = new StringJoiner("\n");
+        joiner.add("DESTINATION: " + this.getDestination());
+        joiner.add("BRAND: " + this.brand);
+        joiner.add("RATING: " + this.getRatingStars());
+        joiner.add("BUDGET: " + moneyFormat(getBudget()));
+        joiner.add("PRICE: " + moneyFormat(getTotalCost()));
+        joiner.add(getSurplusString());
+        return joiner.toString();
     }
 }
