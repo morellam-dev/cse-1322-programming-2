@@ -28,6 +28,7 @@ BEGIN
     // Calculates total trip cost
     METHOD ABSTRACT getTotalCost()
 
+    // Returns a list of attributes
     METHOD ABSTRACT toString()
 
 END CLASS
@@ -47,6 +48,7 @@ BEGIN
             this.rating = rating
     END CONSTRUCTOR
 
+    // For an inclusive vacation, the total cost is simply the price
     METHOD getTotalCost()
         RETURN this.price
     END METHOD
@@ -67,16 +69,18 @@ END CLASS
 ```java
 CLASS PiecemealVacation EXTENDS Vacation
 BEGIN
-    CREATE HashMap<String, Double> items // store items as a key value pair
+    CREATE HashMap items // store items and costs as a map of key-value entries like {"Hotel": 3000.00}
 
+    // Construct an items object
     CONSTRUCTOR PiecemealVacation(param: destination, budget, items)
-            super(destination, budget)
-            this.items = items
+        super(destination, budget)
+        this.items = items
     END CONSTRUCTOR
-`
+    
+    // For piecemeal vacations, the total cost is the sum of all values
     METHOD getTotalCost()
         CREATE total = 0;
-        FOREACH price IN items.values()
+        FOREACH price IN items.values
             total += price
         END FOREACH
         RETURN total;
@@ -87,8 +91,8 @@ BEGIN
         output += "Destination: " + getDestination()
         output += "Budget: $" + getBudget()
         output += "Items:"
-        FOREACH entry<key, value> IN items // a list of Map.Entry<String, Double> objects
-            output += " • " + key + ": $" + value; 
+        FOREACH entry IN items // Create a bulleted list of items and their prices
+            output += " • " + entry.key + ": $" + entry.value; 
         END FOREACH
         output += "Total Price: $" + getTotalPrice()
         output += "Surplus: " + getSurplus()
@@ -124,7 +128,7 @@ BEGIN
         CREATE destination = READ STRING
         PRINT "Budget: $"
         CREATE budget = READ DOUBLE
-        CREATE HashMap<String, Double> items
+        CREATE a HashMap called items
         WHILE true
             PRINT "Item name: "
             CREATE item = READ STRING
@@ -132,15 +136,38 @@ BEGIN
 
             PRINT "Price: "
             CREATE price = READ DOUBLE
-            items.put(item, price); // Add {key: value} to the Map
+            PUT {item: price} INTO items
         END WHILE
 
-        RETURN NEW PiecemealVacation(destination, budget, price, brand, rating)
+        RETURN NEW PiecemealVacation(destination, budget, items)
     END METHOD
 
     STATIC METHOD MAIN
         // CREATE demo Vacation objects using sample data
         // PRINT the toString()
+
+        PRINT "=== Sample Inclusive Vacation ==="
+        CREATE exampleInclusive = NEW InclusiveVacation("Honolulu", 3000.00, 2999.99, "Delta Travel", 4)
+        PRINT exampleInclusive.toString()
+
+        PRINT "=== Sample Piecemeal Vacation ==="
+        CREATE exampleItems with example data {
+            "Hotel": 500.0,
+            "Airfare": 3000.0,
+            "Meals": 150.0
+        }
+        CREATE examplePiecemeal = NEW PiecemealVacation("Italy", 3000.00, exampleItems)
+        PRINT examplePiecemeal.toString()
+
+        PRINT "=== User-Generated Inclusive Vacation ==="
+        CREATE userInclusive = this.inputInclusiveVacation()
+        PRINT userInclusive.toString()
+
+
+        PRINT "=== User-Generated Piecemeal Vacation ==="
+        CREATE userPiecemeal = this.inputPiecemealVacation()
+        PRINT userPiecemeal.toString()
+        
     END METHOD
 
 END CLASS
