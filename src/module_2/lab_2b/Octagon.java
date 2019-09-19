@@ -115,6 +115,5 @@ class Octagon extends GeometricObject implements Cloneable {
  */
 class OctagonDemo {
     public static void main(String[] args) {
-        
     }
 }
