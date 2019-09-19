@@ -8,9 +8,11 @@ import java.awt.event.*;
  */
 
 public class ButtonApp extends Frame {
+    private static final long serialVersionUID = 1785282950335421969L;
 
     public static void main(String[] args) {
         ButtonApp main = new ButtonApp();
+        main.setVisible(true);
     }
     public ButtonApp() {
         // WINDOW LOGIC
@@ -28,17 +30,21 @@ public class ButtonApp extends Frame {
 }
 
 class ButtonAppComponent extends Panel {
+    private static final long serialVersionUID = -3242933000059067958L;
+
     private TextField textField;
     private Panel buttonPanel;
 
     public ButtonAppComponent() {
         super();
 
+        setLayout(new BorderLayout());
+
         // Text Field
         textField = new TextField(40);
         textField.setText("Welcome! Please press a button!");
         textField.setEditable(false);
-        this.add(textField);
+        this.add(textField, BorderLayout.PAGE_START);
 
         // Button Panel
         buttonPanel = new Panel(new GridLayout(2, 3));
@@ -47,19 +53,24 @@ class ButtonAppComponent extends Panel {
             Button btn = new Button(label);
             btn.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    String msg = buttonClickMessage(label);
-                    textField.setText(msg);
+                    displayText(
+                        buttonMessage(label)
+                    );
                 }
             });
             buttonPanel.add(btn);
         }
-        this.add(buttonPanel);
+        this.add(buttonPanel, BorderLayout.PAGE_END);
     }
 
+    public void displayText(String text) {
+        textField.setText(text);
+    }
 
-    public String buttonClickMessage(String buttonName) {
-        String[] formats = { 
-            "Blam! You pressed %s!", "Wowie! %s was pressed!",
+    public String buttonMessage(String buttonName) {
+        final String[] LITERALS = { 
+            "Blam! You pressed %s!", 
+            "Wowie! %s was pressed!",
             "Bazinga! You pressed the heck out of %s!", 
             "Wowie! You just pressed %s!", 
             "Outstanding! That was %s!",
@@ -67,23 +78,11 @@ class ButtonAppComponent extends Panel {
             "Whoa mama! Did you just press %s?",
             "Hachi machi, you pressed %s.",
             "Press %s again. See what happens.",
-            "What? Somebody just pushed %s.",
+            "Huh. Somebody just pushed %s.",
+            "Ah, I love the smell of %s in the morning.",
+            "You might wanna lay off pressing %s.",
         };
-        String format = formats[(int) (Math.random() * formats.length)];
+        String format = LITERALS[(int) (Math.random() * LITERALS.length)];
         return String.format(format, buttonName);
-    }
-}
-
-class ButtonPanel extends Panel {
-    public ButtonPanel(LayoutManager layout, ActionListener al, int buttonCount) {
-        super(layout);
-
-        for (int i = 0; i < buttonCount; i++) {
-            int num = i + 1;
-            String label = "Button #" + num;
-            Button btn = new Button(label);
-            btn.addActionListener(al);
-            this.add(btn);
-        }
     }
 }
