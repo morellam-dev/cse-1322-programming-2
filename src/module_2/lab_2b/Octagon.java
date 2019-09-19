@@ -1,66 +1,120 @@
 package module_2.lab_2b;
 
 /**
- * Octagon
+ * A regular polygon with a discrete number of sides, each one of the same
+ * length. Subclasses must implement a {@code getArea} method, as well as a
+ * {@code getSideLength} method, to determine how many sides the shape has.
  */
-public class Octagon extends GeometricObject implements Comparable<Octagon>, Cloneable {
-
-    /** 
-     * Create a Regular Octagon object
-     * @param sideLength The length of the 
-     */
-    public Octagon(double sideLength) {
-        super(/* sidecount = */ 8, sideLength);
-    }
-
-    /** @return the perimeter of the Octagon, given by the equation `8a` */
-    @Override
-    public double getPerimeter() {
-        double a = getSideLength();
-        return a * 8;
-    }
-    /** @return the area of the Octagon, given by the equation `2(1 + sqrt 2)a^2` */
-    @Override
-    public double getArea() {
-        double a = getSideLength();
-        return 2 * (1 + Math.sqrt(2)) * Math.pow(a,2);
-    }
-
+abstract class GeometricObject implements Comparable<GeometricObject> {
+    private final double edgeLength;
 
     /**
-     * Compares one object with another object for order. Returns a negative
-     * integer, zero, or a positive integer if the first object is less than, equal
-     * to, or greater than the second
+     * Create a new {@code GeometricObject} instance
      * 
-     * @param o1 An octagon
-     * @param o2 An octagon to compare the first octagon to
-     * @return either <code>-1</code>, <code>0</code>, or <code>1</code>
+     * @param edgeLength The length of this shape's sides
      */
-    public static int compare(Octagon o1, Octagon o2) {
-        double len1 = o1.getSideLength();
-        double len2 = o2.getSideLength();
-        int lengthCompare = Double.compare(len1, len2);
+    public GeometricObject(double edgeLength) {
+        this.edgeLength = edgeLength;
+    }
+
+    /** @return The length of this shape's sides */
+    public double getEdgeLength() {
+        return this.edgeLength;
+    }
+
+    /** @return This shape's perimeter */
+    public double getPerimeter() {
+        double perimExact = this.getSideCount() * this.getEdgeLength();
+        return Math.round(perimExact * 100) / 100;
+    }
+
+    /** @return The number of sides this shape has */
+    public abstract int getSideCount();
+
+    /** @return This shape's area */
+    abstract public double getArea();
+
+    /**
+     * Compare a shape to another by its side count, then its area. The sign of the
+     * integer returned will be in line with that of {@code Double.compare}.
+     * 
+     * @param o1 The first shape to compare
+     * @param o2 The second shape to compare
+     * @return {@code 0} if the objects are equal.
+     */
+    public static int compare(GeometricObject o1, GeometricObject o2) {
+        // Compare first by number of sides
+        int sidesCompare = Integer.compare(o1.getSideCount(), o2.getSideCount());
+        if (sidesCompare != 0) {
+            return sidesCompare;
+        }
+        // If they are the same, then compare by side length.
+        int lengthCompare = Double.compare(o1.getEdgeLength(), o2.getEdgeLength());
         return lengthCompare;
     }
 
     /**
-     * Compares this object with the specified object for order. Returns a negative
-     * integer, zero, or a positive integer as this object is less than, equal to,
-     * or greater than the specified object.
+     * Compare this shape to another by its side count, then its area. The sign of
+     * the integer returned will be in line with that of {@code Double.compare}.
      * 
-     * @param anotherObj A geometric object to compare to
-     * @return either <code>-1</code>, <code>0</code>, or <code>1</code>
+     * @param o1 The first shape to compare
+     * @param o2 The second shape to compare
+     * @return {@code 0} if the objects are equal.
      */
-    public int compareTo(Octagon o2) {
+    public int compareTo(GeometricObject o2) {
         return compare(this, o2);
     }
 
-    /** @return */
-    public boolean equals(Octagon o2) {
-        return (this.compareTo(o2) == 0);
+    /**
+     * @param o2 Another shape to compare this one to
+     * @return Whether or not this and another shape are equivalent, determined by
+     *         whether or not they have the same number of sides, and the same
+     *         length.
+     */
+    public boolean equals(GeometricObject o2) {
+        return (compareTo(o2) == 0);
     }
 
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + "{" + " edgeLength='" + getEdgeLength() + "'" + "}";
+    }
+}
+
+/**
+ * A regular octagon, with sides of all the same length. Implements the abstract
+ * methods in its parent class, as well as the {@code Cloneable} interface
+ */
+class Octagon extends GeometricObject implements Cloneable {
+    public static final int sideCount = 8;
+
+    public Octagon(double edgeLength) {
+        super(edgeLength);
+    }
+
+    public int getSideCount() {
+        return 8;
+    }
+
+    public double getArea() {
+        double a = this.getEdgeLength();
+        double areaExact = 2 * (1 + Math.sqrt(2)) * a * a;
+        return Math.round(areaExact * 100) / 100;
+    }
+
+    @Override
     public Octagon clone() {
-        return new Octagon(this.getSideLength());
+        double edge = this.getEdgeLength();
+        return new Octagon(edge);
+    }
+}
+
+/**
+ * A regular octagon, with sides of all the same length. Implements the abstract
+ * methods in its parent class, as well as the {@code Cloneable} interface
+ */
+class OctagonDemo {
+    public static void main(String[] args) {
+        
     }
 }
