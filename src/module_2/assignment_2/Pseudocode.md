@@ -1,3 +1,8 @@
+### Max Morella
+# Assignment 2A - Pseudocode
+
+## `Vacation` class
+
 ```java
 CLASS Vacation
 BEGIN
@@ -19,7 +24,7 @@ BEGIN
         RETURN budget
     END METHOD
 
-    // Calculates the amount of leftover in budget
+    // Calculates the amount of leftover money in budget
     // If trip is over-budget, this value is negative.
     METHOD getSurplus()
         RETURN getBudget() - getTotalCost()
@@ -34,6 +39,7 @@ BEGIN
 END CLASS
 ```
 
+## `InclusiveVacation` class
 ```java
 CLASS InclusiveVacation EXTENDS Vacation
 BEGIN
@@ -66,6 +72,7 @@ BEGIN
 END CLASS
 ```
 
+## `PiecemealVacation` class
 ```java
 CLASS PiecemealVacation EXTENDS Vacation
 BEGIN
@@ -102,6 +109,7 @@ BEGIN
 END CLASS
 ```
 
+## `VacationsApp` class
 ```java
 CLASS VacationsApp
 BEGIN
@@ -146,11 +154,11 @@ BEGIN
         // CREATE demo Vacation objects using sample data
         // PRINT the toString()
 
-        PRINT "=== Sample Inclusive Vacation ==="
+        PRINT "Sample Inclusive Vacation:"
         CREATE exampleInclusive = NEW InclusiveVacation("Honolulu", 3000.00, 2999.99, "Delta Travel", 4)
         PRINT exampleInclusive.toString()
 
-        PRINT "=== Sample Piecemeal Vacation ==="
+        PRINT "Sample Piecemeal Vacation:"
         CREATE exampleItems with example data {
             "Hotel": 500.0,
             "Airfare": 3000.0,
@@ -159,16 +167,14 @@ BEGIN
         CREATE examplePiecemeal = NEW PiecemealVacation("Italy", 3000.00, exampleItems)
         PRINT examplePiecemeal.toString()
 
-        PRINT "=== User-Generated Inclusive Vacation ==="
+        PRINT "User-Generated Inclusive Vacation: "
         CREATE userInclusive = this.inputInclusiveVacation()
         PRINT userInclusive.toString()
 
-
-        PRINT "=== User-Generated Piecemeal Vacation ==="
+        PRINT "User-Generated Piecemeal Vacation: "
         CREATE userPiecemeal = this.inputPiecemealVacation()
         PRINT userPiecemeal.toString()
         
     END METHOD
-
 END CLASS
 ```
