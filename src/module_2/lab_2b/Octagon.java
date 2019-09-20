@@ -1,4 +1,5 @@
 package module_2.lab_2b;
+import java.util.StringJoiner;
 
 /**
  * A regular polygon with a discrete number of sides, each one of the same
@@ -88,6 +89,10 @@ abstract class GeometricObject implements Comparable<GeometricObject> {
 class Octagon extends GeometricObject implements Cloneable {
     public static final int sideCount = 8;
 
+    /**
+     * Construct a new regular Octagon
+     * @param edgeLength The length of each side
+     */
     public Octagon(double edgeLength) {
         super(edgeLength);
     }
@@ -99,13 +104,21 @@ class Octagon extends GeometricObject implements Cloneable {
     public double getArea() {
         double a = this.getEdgeLength();
         double areaExact = 2 * (1 + Math.sqrt(2)) * a * a;
-        return Math.round(areaExact * 100) / 100;
+        return (int)(areaExact * 100) / 100;
     }
 
     @Override
     public Octagon clone() {
         double edge = this.getEdgeLength();
         return new Octagon(edge);
+    }
+
+    public String toString() {
+        StringJoiner joiner = new StringJoiner("\n");
+        joiner.add("Edge length: " + this.getEdgeLength());
+        joiner.add("Area: " + this.getArea());
+        joiner.add("Perimeter: " + this.getPerimeter());
+        return joiner.toString();
     }
 }
 
@@ -115,5 +128,19 @@ class Octagon extends GeometricObject implements Cloneable {
  */
 class OctagonDemo {
     public static void main(String[] args) {
+        Octagon o1 = new Octagon(8);
+        Octagon o2 = new Octagon(6);
+        Octagon o3 = o1.clone();
+        System.out.println("=== OCTAGON o1 ===");
+        System.out.println(o1.toString());
+        System.out.println();
+        System.out.println("=== OCTAGON o2 ===");
+        System.out.println(o1.toString());
+        System.out.println();
+        System.out.println("=== OCTAGON o3 (clone of o1) ===");
+        System.out.println(o1.toString());
+        System.out.println();
+        System.out.println("o3.equals(o1) => " + o3.equals(o1));
+        System.out.println("o3.compareTo(o2) => " + o3.compareTo(o2));
     }
 }
