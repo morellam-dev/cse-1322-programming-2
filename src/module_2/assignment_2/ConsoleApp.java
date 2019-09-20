@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 /**
- * Provides helper methods for reading user input from the console.
+ * Provides various helper methods for reading user input from the console.
  */
 public class ConsoleApp {
     public static final Scanner console = new Scanner(System.in);
@@ -12,12 +12,34 @@ public class ConsoleApp {
      * Prompt the user for input and return a <code>String</code>
      * 
      * @param prompt        The text to show before the user's input (ex.
-     *               <code>"Enter name (John Smith): "</code>)
-     * @return a <code>String</code> input by the user, or the <code>defaultValue</code>
+     *               <code>"Enter name: "</code>)
+     * @return a <code>String</code> input by the user
      */
     public static String inputString(String prompt) {
         System.out.print(prompt);
         return console.nextLine();
+    }
+    
+    /**
+     * Prompt the user for input and return a string. 
+     * If the input is empty (i.e. the user simply presses enter) 
+     * this method will default to a provided value.
+     *
+     * 
+     * @param prompt        The text to show before the user's input. This should include mention of 
+     *                      the default value. (ex. <code>"Enter name (John Smith): "</code>)
+     * @param defaultString The string to return if the user provides no input
+     * @return a <code>String</code> input by the user, or the
+     *         <code>defaultValue</code>
+     */
+    public static String inputStringDefault(String prompt, String defaultString) {
+        System.out.print(prompt);
+        String input = console.nextLine();
+        if (input.length() > 0) {
+            return input;
+        } else {
+            return defaultString;
+        }
     }
 
     /**
@@ -92,51 +114,18 @@ public class ConsoleApp {
         }
     }
 
-
-    /**
-     * Prompt the user to input several fields, then construct an
-     * <code>InclusiveVacation</code> using them
-     * 
-     * @param prompt The text to show before the user's input
-     * @return an <code>InclusiveVacation</code> object with its fields filled via
-     *         user input
+    /** 
+     * Stop execution until the user presses enter.
+     * @param prompt A message to display, prompting the user to "Press enter to continue"
      */
-    public static InclusiveVacation inputInclusive(String prompt) {
-        System.out.print(prompt);
-        return new InclusiveVacation(
-                inputString("Enter destination: "), 
-                inputDouble("Enter budget: $"),
-                inputDouble("Enter price: $"), inputString("Enter brand: "),
-                inputIntWithinRange("Enter rating (0-5 stars): ", 0, 5)
-        );
+    public static void pause(String prompt) {
+        inputString(prompt);
     }
-
+    
     /**
-     * Prompt the user to input several fields, then construct a
-     * <code>PiecemealVacation</code> using them
-     * 
-     * @param prompt The text to show before the user's input
-     * 
-     * @return a <code>PiecemealVacation</code> object with its fields filled via
-     *         user input
+     * Stop execution until the user presses enter.
      */
-    public static PiecemealVacation inputPiecemeal(String prompt) {
-        System.out.print(prompt);
-        String destination = inputString("Enter destination: ");
-        double budget = inputDouble("Enter budget: $");
-
-        HashMap<String, Double> items = new HashMap<>();
-        for (int i = 0; i < 5; i++) {
-            if (i != 0) {
-                System.out.println("Press enter when finished");
-            }
-            String item = inputString("Enter item #" + (i + 1) + ": ");
-            if (item.matches("")) {
-                break;
-            }
-            Double price = inputDouble("Enter " + item + " price: $");
-            items.put(item, price);
-        }
-        return new PiecemealVacation(destination, budget, items);
+    public static void pause() {
+        pause("Press enter to continue...");
     }
 }
