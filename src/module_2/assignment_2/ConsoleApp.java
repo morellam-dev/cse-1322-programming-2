@@ -1,6 +1,5 @@
 package module_2.assignment_2;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 /**
