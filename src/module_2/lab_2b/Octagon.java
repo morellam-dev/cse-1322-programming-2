@@ -4,7 +4,7 @@ import java.util.StringJoiner;
 /**
  * A regular polygon with a discrete number of sides, each one of the same
  * length. Subclasses must implement a {@code getArea} method, as well as a
- * {@code getSideLength} method, to determine how many sides the shape has.
+ * {@code getSideCount} method, to determine how many sides the shape has.
  */
 abstract class GeometricObject implements Comparable<GeometricObject> {
     private final double edgeLength;
