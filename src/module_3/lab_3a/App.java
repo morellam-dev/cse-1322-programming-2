@@ -26,7 +26,7 @@ public class App extends Frame {
         main.setVisible(true);
     }
 
-    // Exit app when main window closes.
+    // EXAMPLE of a private event listener class
     private class WindowCloseListener extends WindowAdapter {
         public void windowClosing(WindowEvent e) {
             System.exit(0);

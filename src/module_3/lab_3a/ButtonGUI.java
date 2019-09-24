@@ -74,9 +74,11 @@ public class ButtonGUI extends Panel {
             "Huh. Somebody just pushed %s.",
             "何!? %s が押されました!" 
         };
-
+        // Get random message format.
         String msgFormat = messages[(int) (Math.random() * messages.length)];
+        // Format string into message
         String msg = String.format(msgFormat, buttonName);
+        // Set textField to message
         textField.setText(msg);
     }
 }
