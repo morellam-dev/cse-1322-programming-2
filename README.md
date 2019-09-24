@@ -8,7 +8,7 @@ This repository contains solution to many homework and lab assignments, and shou
 To preserve IDE functionality when using this repository as a Java source path, classes  contain package headers, i.e. `package module_1.lab_1a`. When attempting to run these classes individually, this line should be removed.
 
 ## Assignment Instructions
-For the benefit of colocation, I have recreated the lab assignment documents in Markdown. These documents are property of the Kennesaw State University College of Computing, and I make no claim to intellectual property. I have provided links to these below. The original docx versions of these assignments are located at https://ccse.kennesaw.edu/fye/1322_labs_assignments.php
+These documents are property of the Kennesaw State University College of Computing. For convenience, I have converted them to Markdown, and provided links below. The original docx versions of these assignments are located at https://ccse.kennesaw.edu/fye/1322_labs_assignments.php
 
 ### Module 1
 * Lab 1A (Coming Soon)
@@ -23,4 +23,4 @@ For the benefit of colocation, I have recreated the lab assignment documents in 
 ### Module 3
 * [Lab 3A - GUI](https://github.com/MozzarellaM/ProgrammingProblemSolving-II/blob/master/src/module_3/lab_3a/_Lab%203A%20-%20GUI.md)
 * [Lab 3B - GUI and Strings](https://github.com/MozzarellaM/ProgrammingProblemSolving-II/blob/master/src/module_3/lab_3b/_Lab%203B%20-%20GUI%20and%20Strings.md)
-* [Assignment 3 - Calculator.md](https://github.com/MozzarellaM/ProgrammingProblemSolving-II/blob/master/src/module_3/assignment_3/_Assignment%203%20-%20Calculator.md)
+* [Assignment 3 - Calculator](https://github.com/MozzarellaM/ProgrammingProblemSolving-II/blob/master/src/module_3/assignment_3/_Assignment%203%20-%20Calculator.md)
