@@ -15,6 +15,7 @@ Write a program using a layout manager.  You must write the program to meet the 
 * Add 6 buttons to the window, each with a number to identify it – such as Button1, Button2, Button3, Button4, Button5, Button6.  
 * When a button is clicked, it will create an event object.
 * Create a listener object that will respond to the event object by displaying a message to the screen stating which button was clicked.
+
 Hint: Make a separate class to handle the event (clicking the button).
 
 
