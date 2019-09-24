@@ -1,4 +1,4 @@
-# CSE1322 -- Lab 3A -- GUI
+# CSE 1322L -- Lab 3A -- GUI
 
 _This lab may contain intentional minor errors; they should be reasonably easy to find and exist so that you must think as you go through the lab.  Like many things in life, "trust but verify."  Ideas will always be correct; only minor code and syntax may be incorrect._
 
@@ -24,5 +24,6 @@ Please include the text files you used for your program in your submission so th
 Follow submission guidelines on this page: http://ccse.kennesaw.edu/fye/Submission%20Guidelines.php
 
 ---
-##### Document converted to Markdown by Max Morella
+Document converted to Markdown by Max Morella
+
 Original file: https://ccse.kennesaw.edu/fye/1322_labs_assignments.php
