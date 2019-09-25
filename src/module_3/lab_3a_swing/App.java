@@ -1,4 +1,4 @@
-package module_3.lab_3a;
+package module_3.lab_3a_swing;
 
 import java.awt.*;
 import java.awt.event.*;
