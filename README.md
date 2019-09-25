@@ -2,10 +2,11 @@
 Code written for CSSE 1332 / 1332L
 M Morella - Fall 2019
 
-This repository contains solution to many homework and lab assignments, and should be used only for reference and learning. Plagiarism is not condoned.
+## Disclaimer
+This repository contains solutions to many homework and lab assignments, and should be used only for reference and educational purposes. Plagiarism or copying code without credit is not condoned.
 
 ## Usage Note:
-To preserve IDE functionality when using this repository as a Java source path, classes  contain package headers, i.e. `package module_1.lab_1a`. When attempting to run these classes individually, this line should be removed.
+To preserve IDE functionality when using this repository as a Java source path, classes contain package headers, i.e. `package module_1.lab_1a`. When attempting to execute these classes individually, this line should be removed.
 
 ## Assignment Instructions
 These documents are property of the Kennesaw State University College of Computing. For convenience, I have converted them to Markdown, and provided links below. The original docx versions of these assignments are located at https://ccse.kennesaw.edu/fye/1322_labs_assignments.php
