@@ -24,3 +24,8 @@ These documents are property of the Kennesaw State University College of Computi
 * [Lab 3A - GUI](https://github.com/MozzarellaM/ProgrammingProblemSolving-II/blob/master/src/module_3/lab_3a/_Lab%203A%20-%20GUI.md)
 * [Lab 3B - GUI and Strings](https://github.com/MozzarellaM/ProgrammingProblemSolving-II/blob/master/src/module_3/lab_3b/_Lab%203B%20-%20GUI%20and%20Strings.md)
 * [Assignment 3 - Calculator](https://github.com/MozzarellaM/ProgrammingProblemSolving-II/blob/master/src/module_3/assignment_3/_Assignment%203%20-%20Calculator.md)
+
+### Module 4
+* [Lab 4A – Recursion](https://github.com/MozzarellaM/ProgrammingProblemSolving-II/blob/master/src/module_4/lab_4a/_Lab%204a%20-%20Recursion.md)
+* [Lab 4B - Recursion](https://github.com/MozzarellaM/ProgrammingProblemSolving-II/blob/master/src/module_4/lab_4b/_Lab%204B%20-%20Recursion.md)
+* Assignment 4 (Coming Soon)
