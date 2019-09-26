@@ -58,7 +58,8 @@ public class ButtonApp extends Application {
 
     /**  */
     public void handleButtonClick(String buttonName) {
-        String format = messages[(int) Math.random() * messages.length];
+        int index = (int)(Math.random() * messages.length);
+        String format = messages[index];
         String message = String.format(format, buttonName); // Insert button name ("You pressed Button #3")
         showText(message); // Display message
     }
