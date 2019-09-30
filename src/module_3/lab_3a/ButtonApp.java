@@ -11,7 +11,6 @@ import javafx.stage.*;
  * ButtonApp
  */
 public class ButtonApp extends Application {
-
     public static String[] buttonNames = {
         "Button #1", 
         "Button #2", 
@@ -36,6 +35,10 @@ public class ButtonApp extends Application {
 
     private TextField textField;
     private Pane buttonList;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -73,9 +76,5 @@ public class ButtonApp extends Application {
 
     public void showText(String message) {
         textField.setText(message);
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
