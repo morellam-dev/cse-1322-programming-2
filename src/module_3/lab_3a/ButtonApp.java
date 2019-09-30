@@ -12,7 +12,14 @@ import javafx.stage.*;
  */
 public class ButtonApp extends Application {
 
-    public static String[] buttonNames = {"Button #1", "Button #2", "Button #3", "Button #4"};
+    public static String[] buttonNames = {
+        "Button #1", 
+        "Button #2", 
+        "Button #3", 
+        "Button #4",
+        "Button #5",
+        "Button #6"
+    };
     public static String[] messages = { 
             "Blam! You pressed %s!", 
             "Wowie! %s was pressed!",
@@ -33,7 +40,7 @@ public class ButtonApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         VBox root = new VBox();
-        primaryStage.setScene(new Scene(root, 400, 300));
+        primaryStage.setScene(new Scene(root, 400, 100));
 
         // Create display window
         textField = new TextField("Welcome! Press any button.");
@@ -41,7 +48,7 @@ public class ButtonApp extends Application {
         root.getChildren().add(textField);
 
         // Create panel of Buttons
-        buttonList = new FlowPane();
+        buttonList = new FlowPane(5,5);
         for (String btnName : buttonNames) {
             // Create Button
             Button btn = new Button(btnName);
