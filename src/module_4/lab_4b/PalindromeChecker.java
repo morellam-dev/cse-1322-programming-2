@@ -3,7 +3,6 @@ package module_4.lab_4b;
 /**
  * PalindromeChecker
  * @author M Morella
- * @since
  */
 public class PalindromeChecker {
     /**
