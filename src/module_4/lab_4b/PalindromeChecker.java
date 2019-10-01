@@ -6,17 +6,18 @@ package module_4.lab_4b;
  */
 public class PalindromeChecker {
     /**
-     * Detects palindromic words and phrases using a recursive method. A palindrome is defined as any
-     * string, which, when all its characters are reversed, produces the same
-     * string. As such, {@code "ada"}, {@code "a"}, and {@code ""} are all considered valid palindromes.
-     * All non-alphanumeric characters are ignored, so {@code "Madam, I'm Adam"} 
-     * is converted to {code "madamimadam"}, and considered a valid palindrome.
+     * Detects palindromic words and phrases using a recursive method which ignores non-alphanumeric characters. 
+     * A palindrome is defined as a string at least 2 characters long, which is the same forward as it is backward.
+     * is converted to {@code "madamimadam"}, and is considered a valid palindrome.
      * 
      * @param str A string which may or may not contain a palindrome
      * @return Whether or not the input is a valid palindrome
      */
     public static boolean isPalindrome(String sentence) {
         String str = sentence.toLowerCase().trim().replaceAll("[^a-zA-Z0-9]", "");
+        if (str.length() < 2) {
+            return false;
+        }
         return isPalindromeHelper(str, 0, str.length() - 1);
     }
 
