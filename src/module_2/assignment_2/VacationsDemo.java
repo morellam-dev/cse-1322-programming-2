@@ -54,23 +54,24 @@ public class VacationsDemo extends ConsoleApp {
     }
 
     public static void main(String[] args) {
-        System.out.println("=== EXAMPLE ALL-INCLUSIVE VACATION ===");
+        // Create demo Inclusive Vacation
         InclusiveVacation exampleInclusiveOne = new InclusiveVacation("Honolulu", 5000, 4000, "Delta Vacations", 4);
+        // Demo piecemeal vacation
+        PiecemealVacation examplePiecemeal = new PiecemealVacation("Italy", 4500, new HashMap<String, Double>(
+            Map.of(
+                "Hotel", 600.0, 
+                "Airfare", 3000.0, 
+                "Meals", 400.0)
+            )
+        );
+        // Print incusive to console
+        System.out.println("=== EXAMPLE ALL-INCLUSIVE VACATION ===");
         exampleInclusiveOne.display();
         System.out.println();
         pause();
         System.out.println();
-
+        // Print piecemeal to console
         System.out.println("=== EXAMPLE PIECEMEAL VACATION ===");
-        
-        HashMap<String, Double> exampleItems = new HashMap<>(
-            Map.of(
-                "Hotel", 600.0,
-                "Airfare", 3000.0,
-                "Meals", 400.0
-            )
-        );
-        PiecemealVacation examplePiecemeal = new PiecemealVacation("Italy", 4500, exampleItems);
         examplePiecemeal.display();
         System.out.println();
         pause();
@@ -78,7 +79,7 @@ public class VacationsDemo extends ConsoleApp {
 
         // Demo: User-generated All-inclusive Vacation
         System.out.println("=== CREATE YOUR OWN ALL-INCLUSIVE VACATION ===");
-        InclusiveVacation userInclusiveVacation = inputInclusive("");
+        Vacation userInclusiveVacation = inputInclusive("");
         System.out.println();
         System.out.println("=== USER GENERATED ALL-INCLUSIVE VACATION ===");
         userInclusiveVacation.display();
@@ -88,7 +89,7 @@ public class VacationsDemo extends ConsoleApp {
 
         // Demo: User-generated Piecemeal Vacation
         System.out.println("=== CREATE YOUR OWN ALL-INCLUSIVE VACATION ===");
-        PiecemealVacation userPiecemealVacation = inputPiecemeal("");
+        Vacation userPiecemealVacation = inputPiecemeal("");
         System.out.println();
         System.out.println("=== USER GENERATED PIECEMEAL VACATION ===");
         userPiecemealVacation.display();
