@@ -18,12 +18,13 @@ public class CalculatorGUI extends Application {
 
     TextField display = new TextField();
     GridPane buttonGrid = new GridPane();
+    
     String[][] buttonLabels = {
         {"7", "8", "9", "/"},
         {"4", "5", "6", "*"},
         {"1", "2", "3", "-"},
         {"0", ".", "=", "+"},
-        {"AC", }
+        {"AC"}
     };
 
     public void start(Stage stage) {
@@ -42,30 +43,43 @@ public class CalculatorGUI extends Application {
                 String label = buttonLabels[row][col];
                 Button btn = new Button(label);
                 btn.setPrefWidth(60);
-                btn.setOnAction(e -> pushButton(label));
+                if (label.equals("AC")) {
+                    btn.setOnAction(e -> {
+                        calculator.clear();
+                        display();
+                    });
+                } else if (label.equals("+") || label.equals("-") || label.equals("*")  || label.equals("/")) {
+                    btn.setOnAction(e -> {
+                        pushOperatorButton(label);
+                        display();
+                    });
+                } else if (label.equals("=")) {
+                    btn.setOnAction(e -> {
+                        calculator.submit();
+                        display();
+                    });
+                } 
+                else {
+                    btn.setOnAction(e -> {
+                        pushNumberButton(label);
+                        display();
+                    });
+                }
+
+                
                 buttonGrid.add(btn, col, row);
             } 
         }
         stage.show();
     }
 
-    public void pushButton(String label) {
-        switch(label) {
-            case "AC":
-                calculator.clear();
-                break;
-            case "+":
-            case "-":
-            case "*":
-            case "/":
-                calculator.setOperator(label);
-                break;
-            case "=":
-                calculator.submit();
-                break;
-            default:
-                calculator.addDigit(label);
-        }
+    public void pushOperatorButton(String label) {
+        calculator.setOperator(label);
+        display();
+    }
+
+    public void pushNumberButton(String label) {
+        calculator.addDigit(label);
         display();
 
         System.out.println("PUSH: " + label);
