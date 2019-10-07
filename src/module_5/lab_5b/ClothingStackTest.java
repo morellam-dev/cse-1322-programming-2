@@ -1,11 +1,22 @@
 package module_5.lab_5b;
 
+import java.util.Scanner;
+
 /**
- * StackTest
+ * StackTest 
+ * @author M. Morella
  */
-public class StackTest {
+public class ClothingStackTest {
+    private static Scanner console = new Scanner(System.in);
+
+    public static void pause() {
+        System.out.print("\nPress enter to continue...");
+        console.nextLine();
+        System.out.println();
+    }
 
     public static void main(String[] args) {
+        System.out.println();
         ClothingStack stackTest1 = new ClothingStack(20, new Clothing[] {
                 new Clothing("shirt", "red", true),
                 new Clothing("shirt", "white", true),
@@ -19,25 +30,24 @@ public class StackTest {
         // Show all clothes
         System.out.println("=== CLOTHING STACK ===");
         stackTest1.display();
-        System.out.println();
+        pause();
         // Show only "red" clothes
-        System.out.println("=== CLOTHING STACK – (ONLY WHITES) ===");
+        System.out.println("=== FILTER CLOTHING STACK – (ONLY REDS) ===");
         stackTest1.matchesColor("red").display();
-        System.out.println();
+        pause();
         // Show only hightemp washable clothes
-        System.out.println("=== CLOTHING STACK – (ONLY HIGH-TEMP) ===");
+        System.out.println("=== FILTER CLOTHING STACK – (ONLY HIGH-TEMP) ===");
         stackTest1.matchesWashable(true).display();
-        System.out.println();
+        pause();
         // Demo accessing 3 elements by pop()
-        System.out.println("=== RETRIEVE 3 ELEMENTS VIA POP() ===");
+        System.out.println("=== RETRIEVE 4 ELEMENTS VIA POP() ===");
         for (int i = 0; i < 4; i++) {
             System.out.println("POP: " + stackTest1.pop().toSimpleString());
         }
-        System.out.println();
+        pause();
         // Show popped stack
-        System.out.println("=== CLOTHING STACK ===");
+        System.out.println("=== CLOTHING STACK (AFTER POP) ===");
         stackTest1.display();
-        System.out.println();
     }
 }
 /* Console output: 

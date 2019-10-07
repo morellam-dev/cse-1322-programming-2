@@ -2,6 +2,7 @@ package module_5.lab_5b;
 
 /**
  * ClothingStack
+ * @author M Morella
  */
 public class ClothingStack implements Cloneable {
     private Clothing[] stack;
@@ -12,8 +13,8 @@ public class ClothingStack implements Cloneable {
      * @param size The maximum number of clothes that can fit in the array
      * @param clothes An optional array of clothes to start the stack with
      */
-    public ClothingStack(int size, Clothing ... clothes) {
-        this.stack = new Clothing[size];
+    public ClothingStack(int capacity, Clothing ... clothes) {
+        this.stack = new Clothing[capacity];
         for (Clothing c : clothes) {
             this.push(c);
         }
@@ -30,7 +31,7 @@ public class ClothingStack implements Cloneable {
         return pointer + 1;
     }
     /** @return the maximum number of Clothing items in the stack */
-    public int size() {
+    public int capacity() {
         return stack.length;
     }
     /** @return whether or not the stack is empty */
@@ -68,7 +69,7 @@ public class ClothingStack implements Cloneable {
      */
     public boolean push(Clothing c) {
         // If the stack is full, do nothing.
-        if (count() == size()) {
+        if (count() == capacity()) {
             return false;
         }
         // Increment pointer, then insert c at stack[pointer]
@@ -77,7 +78,7 @@ public class ClothingStack implements Cloneable {
     }
 
     public ClothingStack clone() {
-
+        return new ClothingStack(this.capacity(), this.stack.clone());
     }
     /**
      * Returns all clothes that match a given color
@@ -85,7 +86,7 @@ public class ClothingStack implements Cloneable {
      * @return A stack of clothes which all match that color
      */
     public ClothingStack matchesColor(String color) {
-        ClothingStack newStack = new ClothingStack(this.size());
+        ClothingStack newStack = new ClothingStack(this.capacity());
         for (int i = 0; i < count(); i++) {
             Clothing c = stack[i];
             if (c.getColor().toLowerCase().equals(color.toLowerCase())) {
@@ -100,7 +101,7 @@ public class ClothingStack implements Cloneable {
      * @return A stack of clothes
      */
     public ClothingStack matchesWashable(boolean hightemp) {
-        ClothingStack newStack = new ClothingStack(this.size());
+        ClothingStack newStack = new ClothingStack(this.capacity());
         for (int i = 0; i < count(); i++) {
             Clothing c = stack[i];
             if (c.isHighTempWashable() == hightemp) {
