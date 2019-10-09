@@ -6,6 +6,8 @@ package module_5.lab_5b;
  */
 public class ClothingStack implements Cloneable {
     private Clothing[] stack;
+    private final int capacity;
+    private int size = 0;
     private int pointer = -1; // The index of the current topmost element
 
     /**
@@ -14,6 +16,7 @@ public class ClothingStack implements Cloneable {
      * @param clothes An optional array of clothes to start the stack with
      */
     public ClothingStack(int capacity, Clothing ... clothes) {
+        this.capacity = capacity;
         this.stack = new Clothing[capacity];
         for (Clothing c : clothes) {
             this.push(c);
@@ -32,11 +35,14 @@ public class ClothingStack implements Cloneable {
     }
     /** @return the maximum number of Clothing items in the stack */
     public int capacity() {
-        return stack.length;
+        return capacity;
     }
     /** @return whether or not the stack is empty */
     public boolean isEmpty() {
-        return pointer == -1;
+        return size == 0;
+    }
+    public boolean isFull() {
+        return size == capacity;
     }
 
     /**
@@ -58,6 +64,7 @@ public class ClothingStack implements Cloneable {
             return null;
         }
         // Return stack[pointer], then decrement
+        size--;
         return stack[pointer--];
 
     }
@@ -74,11 +81,19 @@ public class ClothingStack implements Cloneable {
         }
         // Increment pointer, then insert c at stack[pointer]
         stack[++pointer] = c;
+        size++;
         return true;
     }
 
+    private ClothingStack(int capacity, Clothing[] stack, int pointer, int size) {
+        this.capacity = capacity;
+        this.stack = stack;
+        this.pointer = pointer;
+        this.size = size;
+    }
+
     public ClothingStack clone() {
-        return new ClothingStack(this.capacity(), this.stack.clone());
+        return new ClothingStack(this.capacity(), this.stack, this.pointer, this.size);
     }
     /**
      * Returns all clothes that match a given color
