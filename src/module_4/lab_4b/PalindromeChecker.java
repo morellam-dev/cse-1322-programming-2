@@ -13,29 +13,29 @@ public class PalindromeChecker {
      * @param str A string which may or may not contain a palindrome
      * @return Whether or not the input is a valid palindrome
      */
-    public static boolean isPalindrome(String sentence) {
-        String str = sentence.toLowerCase().trim().replaceAll("[^a-zA-Z0-9]", "");
-        if (str.length() < 2) {
-            return false;
+
+    public static boolean isPalindrome(String str) {
+        if (str.length() <= 1) {
+            return true;
         }
-        return isPalindromeHelper(str, 0, str.length() - 1);
+        int end = str.length() - 1; // the index of the last character in the array
+        if (str.charAt(0) == str.charAt(end)) {
+            String sub = str.substring(1, end);
+            return isPalindrome(sub);
+        }
+        return false;
     }
 
-    // Recursive method
-    private static boolean isPalindromeHelper(String str, int indexBegin, int indexEnd) {
-        // End case 1: the characters at the two indexes are not equal.
-        if (str.charAt(indexBegin) != str.charAt(indexEnd))
-            return false;
-        // End case 2: the string has reached the middle, and all checks so far have
-        // returned true.
-        if (indexBegin >= indexEnd)
-            return true;
-        return isPalindromeHelper(str, ++indexBegin, --indexEnd);
+    public static String clean(String str) {
+        return str.toLowerCase().trim().replaceAll("[^a-zA-Z0-9]", "");
     }
 
     public static void main(String[] args) {
         String[] tests = {
-                "Madam, I'm Adam.", 
+                "abba",
+                "abcba",
+                "atlanta",
+                "Madam, I'm Adam.", "This isn't a palindrome",
                 "Woh! OwO OwO. How?", 
                 "No 'x' in Nixon?", 
                 "Able was I, ere I saw Elba",
@@ -46,7 +46,8 @@ public class PalindromeChecker {
                 "This sentence is not a palindrome.", 
                 };
         for (String str : tests) {
-            System.out.println("isPalindrome(\"" + str + "\") => " + isPalindrome(str));
+            System.out.println("\"" + str + "\" -- \"" + clean(str) + "\" " 
+            + (isPalindrome(clean(str)) ? "IS a palindrome" : "is NOT a palindrome"));
         }
     }
 }
