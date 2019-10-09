@@ -4,34 +4,30 @@ package module_4.lab_4a;
  * VowelCounter
  */
 public class VowelCounter {
-
+    public static final char[] VOWELS = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
+    /**
+     * Uses recursive methods to count the number of vowels (a-e-i-o-u) in a word or phrase
+     * @param str The string to count
+     * @return The number of vowels to count
+     */
     public static int vowelCount(String str) {
-        return vowelCount(str, 0);
-    }
-
-    public static int vowelCount(String str, int index) {
-        // EXIT CASE: We've reached the end of the string.
-        if (index >= str.length()) {
+        if (str.length() == 0)
             return 0;
-        }
-        char ch = str.charAt(index);
-        if  (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
-            // RECURSE CASE 1: Vowel found, add 1 to total
-            return 1 + vowelCount(str, index + 1);
-        } else {
-            // RECURSE CASE 2: Vowel not found, add 0 to total
-            return vowelCount(str, index + 1);
-        }     
+        int count = vowelCount(str.substring(1)); // Recurse until string is empty
+        if (str.substring(0, 1).matches("[aeiouAEIOU]")) // check the first character in the string
+            return count + 1;
+        return count;
     }
 
     public static void main(String[] args) {
+        System.out.println();
         System.out.println("=== RECURSIVE VOWEL COUNTER DEMO ===");
 
         final String[] demoStrings = {
-            "queueing", "buffalo", "hachi machi", "hello world", "bienvenue", "power bottoms"
+            "aaa", "aab", "queueing", "buffalo", "hachi machi", "hello world", "bienvenue", "power bottoms"
         };
         for (String s : demoStrings) {
-            System.out.println("vowelCount(\"" + s + "\") => " + vowelCount(s));
+            System.out.printf("vowelCount(\"%s\") => %d\n", s, vowelCount(s));
         }
     }
 
