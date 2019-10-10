@@ -3,7 +3,7 @@ Code written for CSSE 1332 / 1332L
 M Morella - Fall 2019
 
 ## Disclaimer
-This repository contains solutions to many homework and lab assignments, and should be used only for reference and educational purposes. Plagiarism or copying code without credit is not condoned.
+This repository contains solutions to many homework and lab assignments, and should be used only for reference and educational purposes. Plagiarism or uncredited use of code without credit is not condoned.
 
 ## Usage Note:
 To preserve IDE functionality when using this repository as a Java source path, classes contain package headers, i.e. `package module_1.lab_1a`. When attempting to execute these classes individually, this line should be removed.
