@@ -11,11 +11,13 @@ public class VowelCounter {
      * @return The number of vowels to count
      */
     public static int vowelCount(String str) {
-        if (str.length() == 0)
+        if (str.length() == 0) {
             return 0;
-        int count = vowelCount(str.substring(1)); // Recurse until string is empty
-        if (str.substring(0, 1).matches("[aeiouAEIOU]")) // check the first character in the string
+        }
+        int count = vowelCount(str.substring(1));
+        if (str.substring(0, 1).matches("[aeiouAEIOU]" /* */)) {
             return count + 1;
+        }   
         return count;
     }
 
@@ -24,7 +26,7 @@ public class VowelCounter {
         System.out.println("=== RECURSIVE VOWEL COUNTER DEMO ===");
 
         final String[] demoStrings = {
-            "aaa", "aab", "queueing", "buffalo", "hachi machi", "hello world", "bienvenue", "power bottoms"
+            "AIUEOaiueo", "abab", "queueing", "buffalo", "hachi machi", "hOnK hOnK mOtHeRfAtHeR", "bienvenue", "power bottoms"
         };
         for (String s : demoStrings) {
             System.out.printf("vowelCount(\"%s\") => %d\n", s, vowelCount(s));
@@ -32,3 +34,17 @@ public class VowelCounter {
     }
 
 }
+/**
+Console Output:
+
+=== RECURSIVE VOWEL COUNTER DEMO ===
+vowelCount("AIUEOaiueo") => 10
+vowelCount("abab") => 2
+vowelCount("queueing") => 5
+vowelCount("buffalo") => 3
+vowelCount("hachi machi") => 4
+vowelCount("hOnK hOnK mOtHeRfAtHeR") => 6
+vowelCount("bienvenue") => 5
+vowelCount("power bottoms") => 4
+
+ */
