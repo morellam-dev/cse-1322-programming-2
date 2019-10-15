@@ -12,27 +12,49 @@ public class LinkedListApp {
     private List<Integer> myList = new LinkedList<>();
     private static Scanner console = new Scanner(System.in);
 
-    public static int sum(List<Integer> list) {
+    /**
+     * @param list a List of Integer values
+     * @return A sum of those integers
+     */
+    public static int sumIntegerList(List<Integer> list) {
         int sum = 0;
-        for (int num : list) {
-            sum += num;
-        }
+        for (int n : list)
+            sum += n;
         return sum;
     }
 
-    public void inputInteger() throws NumberFormatException {
+    /**
+     * @param list a List of double values
+     * @return A sum of those integers
+     */
+    public static double sumDoubleList(List<Double> list) {
+        double sum = 0;
+        for (double n : list)
+            sum += n;
+        return sum;
+    }
+
+    public void addInteger() throws NumberFormatException {
         int i = myList.size();
         System.out.print("Input number #" + (i + 1) + ": ");
         String input = console.nextLine();
         try {
             myList.add(Integer.parseInt(input));
         } catch (NumberFormatException e) {
+            return;
+        }
+    }
+
+    public void addIntegers(int amount) {
+        int maximum = myList.size() + amount;
+        while (myList.size() < maximum) {
+            addInteger();
+            display();
         }
     }
 
     public void display() {
-        System.out.print("ARRAY: " + myList.toString() + " - " 
-        + "SUM: " + sum(myList));
+        System.out.print("ARRAY: " + myList.toString() + " - " + "SUM: " + sumIntegerList(myList));
         System.out.println();
     }
 
@@ -42,9 +64,6 @@ public class LinkedListApp {
 
     public static void main(String[] args) {
         var demo = new LinkedListApp();
-        while (demo.size() < 10) {
-            demo.inputInteger();
-            demo.display();
-        }
+        demo.addIntegers(10);
     }
 }
