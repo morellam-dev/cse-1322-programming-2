@@ -2,13 +2,15 @@ package module_4.lab_4b;
 
 /**
  * PalindromeChecker
+ * 
  * @author M Morella
  */
 public class PalindromeChecker {
     /**
-     * Detects palindromic words and phrases using a recursive method which ignores non-alphanumeric characters. 
-     * A palindrome is defined as a string at least 2 characters long, which is the same forward as it is backward.
-     * is converted to {@code "madamimadam"}, and is considered a valid palindrome.
+     * Detects palindromic words and phrases using a recursive method. A palindrome
+     * is defined as any string which is the same forward as it is backward.
+     * {@code "abba"}, {@code "madamimadam"}, {@code "aa"}, and
+     * {@code ""} are all considered valid palindromes.
      * 
      * @param str A string which may or may not contain a palindrome
      * @return Whether or not the input is a valid palindrome
@@ -16,38 +18,22 @@ public class PalindromeChecker {
 
     public static boolean isPalindrome(String str) {
         if (str.length() <= 1) {
+            // If string is 1 or 0 chars long ("_a_" or "__")
             return true;
         }
-        int end = str.length() - 1; // the index of the last character in the array
-        if (str.charAt(0) == str.charAt(end)) {
-            String sub = str.substring(1, end);
-            return isPalindrome(sub);
+        int lastIndex = str.length() - 1; // the index of the last character in the array
+        if (!(str.charAt(0) == str.charAt(lastIndex))) {
+            return false;
         }
-        return false;
+        String sub = str.substring(1, lastIndex); // slice off the first and last character of the string.
+        return isPalindrome(sub);
     }
 
-    public static String clean(String str) {
-        return str.toLowerCase().trim().replaceAll("[^a-zA-Z0-9]", "");
+    public static boolean isPalindromeClean(String str) {
+        return isPalindrome(cleanString(str));
     }
 
-    public static void main(String[] args) {
-        String[] tests = {
-                "abba",
-                "abcba",
-                "atlanta",
-                "Madam, I'm Adam.", "This isn't a palindrome",
-                "Woh! OwO OwO. How?", 
-                "No 'x' in Nixon?", 
-                "Able was I, ere I saw Elba",
-                "Was it a car or a cat I saw?",
-                "aloha ahola", 
-                "Hello world", 
-                "bananab",
-                "This sentence is not a palindrome.", 
-                };
-        for (String str : tests) {
-            System.out.println("\"" + str + "\" -- \"" + clean(str) + "\" " 
-            + (isPalindrome(clean(str)) ? "IS a palindrome" : "is NOT a palindrome"));
-        }
+    public static String cleanString(String str) {
+        return str.toLowerCase().replaceAll("[^a-zA-Z0-9]", "");
     }
 }
