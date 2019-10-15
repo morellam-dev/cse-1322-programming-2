@@ -21,15 +21,15 @@ public class PalindromeChecker {
     }
 
     private static boolean isPalindromeRecursive(String str) {
-        if (str.length() <= 1) {
-            // If string is 1 or 0 chars long ("_a_" or "__")
-            return true;
-        }
-        int lastIndex = str.length() - 1; // the index of the last character in the array
-        if (!(str.charAt(0) == str.charAt(lastIndex))) {
+        if (str.length() < 2) return true;
+
+        char first = str.charAt(0);
+        char last = str.charAt(str.length() - 1);
+        if (first == last) {
+            String inner = str.substring(1, str.length() - 1);
+            return isPalindromeRecursive(inner);
+        } else {
             return false;
         }
-        String sub = str.substring(1, lastIndex); // slice off the first and last character of the string.
-        return isPalindromeRecursive(sub);
     }
 }
