@@ -6,17 +6,21 @@ package module_4.lab_4b;
  * @author M Morella
  */
 public class PalindromeChecker {
-    /**
-     * Detects palindromic words and phrases using a recursive method. A palindrome
-     * is defined as any string which is the same forward as it is backward.
-     * {@code "abba"}, {@code "madamimadam"}, {@code "aa"}, and
-     * {@code ""} are all considered valid palindromes.
-     * 
-     * @param str A string which may or may not contain a palindrome
-     * @return Whether or not the input is a valid palindrome
-     */
 
+    /**
+     * Detects palindromes using a recursive method. Ignores all spaces,
+     * capitalization, and puncturation. For example, {@code "Madam I'm adam"} is
+     * reduced to {@code "madamimadam"}, and returns {@code true}.
+     * 
+     * @param str The string to test
+     * @return If the string is a valid palindrome, {@code true}. Otherwise {@code false}
+     */
     public static boolean isPalindrome(String str) {
+        String cleanString = str.toLowerCase().replaceAll("[^a-zA-Z0-9]", "");
+        return isPalindromeRecursive(cleanString);
+    }
+
+    private static boolean isPalindromeRecursive(String str) {
         if (str.length() <= 1) {
             // If string is 1 or 0 chars long ("_a_" or "__")
             return true;
@@ -26,14 +30,6 @@ public class PalindromeChecker {
             return false;
         }
         String sub = str.substring(1, lastIndex); // slice off the first and last character of the string.
-        return isPalindrome(sub);
-    }
-
-    public static boolean isPalindromeClean(String str) {
-        return isPalindrome(cleanString(str));
-    }
-
-    public static String cleanString(String str) {
-        return str.toLowerCase().replaceAll("[^a-zA-Z0-9]", "");
+        return isPalindromeRecursive(sub);
     }
 }

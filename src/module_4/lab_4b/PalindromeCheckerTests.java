@@ -59,7 +59,7 @@ public class PalindromeCheckerTests {
     public static boolean palindromeTest(String palindrome, boolean expectedValue) {
         boolean isPalindrome, testPassed;
         try {
-            isPalindrome = PalindromeChecker.isPalindromeClean(palindrome);
+            isPalindrome = PalindromeChecker.isPalindrome(palindrome);
             testPassed = (isPalindrome == expectedValue);
         } catch (Exception e) {
             e.printStackTrace();
