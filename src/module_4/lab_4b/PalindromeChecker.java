@@ -8,12 +8,13 @@ package module_4.lab_4b;
 public class PalindromeChecker {
 
     /**
-     * Detects palindromes using a recursive method. Ignores all spaces,
-     * capitalization, and puncturation. For example, {@code "Madam I'm adam"} is
-     * reduced to {@code "madamimadam"}, and returns {@code true}.
+     * Detects palindromes using a recursive method. A palindrome is any string which is the
+     * same forwards as it is backwards. Ignores all spaces, capitalization, and
+     * puncturation. For example, {@code "Madam I'm adam"} is
      * 
      * @param str The string to test
-     * @return If the string is a valid palindrome, {@code true}. Otherwise {@code false}
+     * @return If the string is a valid palindrome, {@code true}. Otherwise
+     *         {@code false}
      */
     public static boolean isPalindrome(String str) {
         String cleanString = str.toLowerCase().replaceAll("[^a-zA-Z0-9]", "");
