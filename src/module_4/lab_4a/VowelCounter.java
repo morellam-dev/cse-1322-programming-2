@@ -26,7 +26,7 @@ public class VowelCounter {
         System.out.println("=== RECURSIVE VOWEL COUNTER DEMO ===");
 
         final String[] demoStrings = {
-            "AIUEOaiueo", "abab", "queueing", "buffalo", "hachi machi", "hOnK hOnK mOtHeRfAtHeR", "bienvenue", "power bottoms"
+            "AIUEOaiueo", "abab", "queueing", "buffalo", "4BS0L6T3LY L33T", "hachi machi", "hOnK hOnK mOtHeRfAtHeR", "bienvenue", "power bottoms"
         };
         for (String s : demoStrings) {
             System.out.printf("vowelCount(\"%s\") => %d\n", s, vowelCount(s));
