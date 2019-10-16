@@ -14,6 +14,7 @@
 === PALINDROME TEST #2 (COMPLEX SENTENCES) ===
 ✅  "Able was I, ere I saw Elba" -> TRUE; expected TRUE
 ✅  "No 'x' in Nixon?" -> TRUE; expected TRUE
+❌  "NOTICE: This test is expected to fail" -> FALSE; expected TRUE
 ✅  "Was it a car or a cat I saw?" -> TRUE; expected TRUE
 ✅  "Madam, I'm Adam." -> TRUE; expected TRUE
 ❎  "This sentence is not a palindrome." -> FALSE; expected FALSE
@@ -53,7 +54,8 @@ public class PalindromeCheckerTests {
         "No 'x' in Nixon?", true,
         "This sentence is not a palindrome.", false,
         "Was it a car or a cat I saw?", true,
-        "Woh! OwO OwO. How?", true
+        "Woh! OwO OwO. How?", true,
+        "NOTICE: This test is expected to fail", true
     ));
 
     public static boolean palindromeTest(String palindrome, boolean expectedValue) {
