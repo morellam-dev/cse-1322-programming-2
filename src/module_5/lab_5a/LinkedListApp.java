@@ -1,15 +1,17 @@
 package module_5.lab_5a;
 
-import java.util.LinkedList;
 import java.util.List;
+// import java.util.LinkedList;
 import java.util.Scanner;
+
+import module_5.lab_5a.LinkedList;
 
 /**
  * LinkedListApp
  */
 public class LinkedListApp {
 
-    private List<Integer> myList = new LinkedList<>();
+    private LinkedList<Integer> myList = new LinkedList<>();
     private static Scanner console = new Scanner(System.in);
 
     /**
