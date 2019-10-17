@@ -1,11 +1,11 @@
 package module_5.lab_5a;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 /**
  * ArrayListApp
+ * @author M Morella
  */
 public class ArrayListApp {
 
