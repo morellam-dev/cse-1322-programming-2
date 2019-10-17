@@ -1,4 +1,4 @@
-package module_5.lab_5b;
+package module_5.lab_5b.food_queue;
 
 /**
  * Represents an item of food, the number of calories per serving and the number of servings per container 

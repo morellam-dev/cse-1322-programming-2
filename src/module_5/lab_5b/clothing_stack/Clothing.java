@@ -1,8 +1,8 @@
-package module_5.lab_5b;
+package module_5.lab_5b.clothing_stack;
 
 /**
  * A data-type referring to a single article of clothing
- * @author M. Morella
+ * @author M. Morella 
  */
 public class Clothing {
     final private String name;

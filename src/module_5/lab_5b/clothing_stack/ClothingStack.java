@@ -1,4 +1,4 @@
-package module_5.lab_5b;
+package module_5.lab_5b.clothing_stack;
 
 /**
  * ClothingStack
