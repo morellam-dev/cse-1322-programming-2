@@ -1,41 +1,16 @@
-/* CONSOLE OUTPUT:
-
-=== PALINDROME TEST #1 (SIMPLE WORDS) ===
-✅  "" -> TRUE; expected TRUE
-✅  "a" -> TRUE; expected TRUE
-❎  "abca" -> FALSE; expected FALSE
-✅  "aloha ahola" -> TRUE; expected TRUE
-❎  "toy boat" -> FALSE; expected FALSE
-✅  "bananab" -> TRUE; expected TRUE
-✅  "abba" -> TRUE; expected TRUE
-❎  "atlanta" -> FALSE; expected FALSE
-8 out of 8 tests passed
-
-=== PALINDROME TEST #2 (COMPLEX SENTENCES) ===
-✅  "Able was I, ere I saw Elba" -> TRUE; expected TRUE
-✅  "No 'x' in Nixon?" -> TRUE; expected TRUE
-❌  "NOTICE: This test is expected to fail" -> FALSE; expected TRUE
-✅  "Was it a car or a cat I saw?" -> TRUE; expected TRUE
-✅  "Madam, I'm Adam." -> TRUE; expected TRUE
-❎  "This sentence is not a palindrome." -> FALSE; expected FALSE
-✅  "Woh! OwO OwO. How?" -> TRUE; expected TRUE
-❎  "Hello world" -> FALSE; expected FALSE
-❎  "This isn't a palindrome" -> FALSE; expected FALSE
-8 out of 8 tests passed
-*/
-
 package module_4.lab_4b;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * PalindromeCheckerTests
+ * An emoji-rich console-based app which iterates over a map of palindromes, and determines
+ * whether the isPalindrome() method returns the expected result.
  * @author M Morella
  */
 public class PalindromeCheckerTests {
     private final static HashMap<String, Boolean> WORD_TESTS = new HashMap<>(Map.of(
-        // test string –– expected value
+        // test string –– expected value of isPalindrome()
         "", true,
         "a", true,
         "abca", false,
@@ -94,6 +69,11 @@ public class PalindromeCheckerTests {
     }
 
     public static void main(String[] args) {
+        System.out.println("=== LEGEND ===\n"
+        + "✅ — \"test passed, palindrome detected as expected\"\n"
+        + "❎ — \"test passed, no palindrome detected, as expected\"\n"
+        + "❌ — \"test failed! isPalindrome did not return expected value\"\n");
+        
         System.out.println();
         System.out.println("=== PALINDROME TEST #1 (SIMPLE WORDS) ===");
         runTests(WORD_TESTS);
@@ -101,3 +81,34 @@ public class PalindromeCheckerTests {
         runTests(SENTENCE_TESTS);
     }
 }
+/* CONSOLE OUTPUT:
+
+=== LEGEND ===
+✅ — "test passed, palindrome detected as expected"
+❎ — "test passed, no palindrome detected, as expected"
+❌ — "test failed! isPalindrome did not return expected value"
+
+
+=== PALINDROME TEST #1 (SIMPLE WORDS) ===
+✅  "" -> TRUE; expected TRUE
+✅  "a" -> TRUE; expected TRUE
+❎  "abca" -> FALSE; expected FALSE
+✅  "aloha ahola" -> TRUE; expected TRUE
+❎  "toy boat" -> FALSE; expected FALSE
+✅  "bananab" -> TRUE; expected TRUE
+❎  "atlanta" -> FALSE; expected FALSE
+✅  "abba" -> TRUE; expected TRUE
+8 out of 8 tests passed
+
+=== PALINDROME TEST #2 (COMPLEX SENTENCES) ===
+✅  "Able was I, ere I saw Elba" -> TRUE; expected TRUE
+❌  "NOTICE: This test is expected to fail" -> FALSE; expected TRUE
+✅  "No 'x' in Nixon?" -> TRUE; expected TRUE
+✅  "Was it a car or a cat I saw?" -> TRUE; expected TRUE
+❎  "This sentence is not a palindrome." -> FALSE; expected FALSE
+✅  "Madam, I'm Adam." -> TRUE; expected TRUE
+❎  "This isn't a palindrome" -> FALSE; expected FALSE
+✅  "Woh! OwO OwO. How?" -> TRUE; expected TRUE
+❎  "Hello world" -> FALSE; expected FALSE
+8 out of 9 tests passed
+*/
