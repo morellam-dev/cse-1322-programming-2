@@ -8,9 +8,10 @@ package module_4.lab_4b;
 public class PalindromeChecker {
 
     /**
-     * Detects palindromes using a recursive method. A palindrome is any string which is the
-     * same forwards as it is backwards. Ignores all spaces, capitalization, and
-     * puncturation. For example, {@code "Madam I'm adam"} is
+     * Detects palindromes using a recursive method. 
+     * A palindrome is any string whose letters are the same forward as they are backwards. 
+     * Non-alphanumeric characters are ignored; for example, {@code "Madam I'm adam"} is 
+     * converted to {@code "madamimadam"}, and considered a valid palindrome.
      * 
      * @param str The string to test
      * @return If the string is a valid palindrome, {@code true}. Otherwise
