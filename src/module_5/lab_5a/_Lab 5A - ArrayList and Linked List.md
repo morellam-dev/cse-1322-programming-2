@@ -6,7 +6,7 @@ _This lab may contain intentional minor errors; they should be reasonably easy t
 
 ### Objectives
 
-To write a program using an ArrayList and a Linked List.
+To write a program using an Array List and a Linked List.
 
 ### Problem Statement
 
