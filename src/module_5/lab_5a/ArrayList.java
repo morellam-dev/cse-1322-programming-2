@@ -3,7 +3,6 @@ package module_5.lab_5a;
 import java.util.AbstractList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.ListIterator;
 
 /**
  * Simple implementation of Array List using Java's AbstractList skeleton
@@ -15,6 +14,8 @@ public class ArrayList<E> extends AbstractList<E> {
 
     @SuppressWarnings("unchecked")
     public ArrayList() {
+        /* Java does not allow instantiating new generic arrays 
+        without performing an unchecked type cast. Suppress this warning. */
         arr = (E[])new Object[DEFAULT_CAPACITY];
     }
 
@@ -39,7 +40,7 @@ public class ArrayList<E> extends AbstractList<E> {
     public boolean add(E elem) {
         int index = size;
         if (index == arr.length) {
-            resizeArray(2);
+            resizeArray(2); // If the array is full, double its size.
         }
         arr[index] = elem;
         size++;
