@@ -1,69 +1,80 @@
 package module_5.lab_5a;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-
+import java.util.ArrayList;
 /**
  * ArrayListApp
- * @author M Morella
  */
 public class ArrayListApp {
-
-    private List<Integer> myList = new ArrayList<>();
-    private static Scanner console = new Scanner(System.in);
-
-    /** 
-     * @param list a List of Integer values
-     * @return A sum of those integers
-     */
-    public static int sumIntegerList(List<Integer> list) {
-        int sum = 0;
-        for (int n : list) 
-            sum += n;
-        return sum;
-    }
+    protected static final Scanner scanner = new Scanner(System.in);
+    private ArrayList<Integer> myList = new ArrayList<>();
 
     /**
-     * @param list a List of double values
-     * @return A sum of those integers
+     * Given a List object, return the sum of its values as a double
+     * 
+     * @param list A list of integers
+     * @return The sum of the list's numbers
      */
-    public static double sumDoubleList(List<Double> list) {
+    public static int sumIntegerList(List<? extends Number> list) {
+        int sum = 0;
+        for (Number num : list) {
+            sum += num.intValue();
+        }
+        return sum;
+    }
+    /**
+     * Given a List object, return the sum of its values as a double
+     * 
+     * @param list A list of numbers
+     * @return The sum of the list's numbers
+     */
+    public static double sumDoubleList(List<Number> list) {
         double sum = 0;
-        for (double n : list) 
-            sum += n;
+        for (Number num : list) {
+            sum += num.doubleValue();
+        }
         return sum;
     }
 
-    public void addInteger() throws NumberFormatException {
-        int i = myList.size();
-        System.out.print("Input number #" + (i + 1) + ": "); 
-        String input = console.nextLine();
-        try {
-            myList.add(Integer.parseInt(input));
-        } catch (NumberFormatException e) {
-            return;
+
+    /** Prompt the user for input, then return their input as an integer.
+     * If the user's input is invalid, the method will repeat until valid input is returned.
+     * 
+     * @prompt A message to print 
+     * @return An integer
+     */
+    public static int inputInteger(String prompt) {
+        while (true) {
+            System.out.print(prompt); // "Input #1: "
+            String input = scanner.nextLine();
+            try {
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.printf("Error! \"%s\" is not a valid integer\n", input);
+            }
         }
     }
-
+    /**
+     * 
+     */
     public void addIntegers(int amount) {
-        int maximum = myList.size() + amount;
-        while (myList.size() < maximum) {
-            addInteger();
+        int total = myList.size() + amount;
+        while (myList.size() < total) {
+            int index = myList.size() + 1;
+            int input = inputInteger("Enter input #" + index + ": ");
+            myList.add(input);
             display();
         }
     }
 
     public void display() {
-        System.out.print("ARRAY: " + myList.toString() + " - " + "SUM: " + sumIntegerList(myList));
-        System.out.println();
-    }
-
-    public int size() {
-        return myList.size();
+        System.out.println(myList.toString() + " - SUM: " + sumIntegerList(myList));
     }
 
     public static void main(String[] args) {
-        var demo = new ArrayListApp();
-        demo.addIntegers(10);
+        ArrayListApp app = new ArrayListApp();
+        app.addIntegers(10);
     }
 }
