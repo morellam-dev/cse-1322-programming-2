@@ -1,145 +1,146 @@
 package module_5.lab_5b.food_queue;
 
+import java.util.AbstractCollection;
+import java.util.Collection;
+import java.util.Iterator;
+
 /**
- * ClothingStack
+ * A Collection which implements a fixed-capacity queue of Food items. 
+ * @implSpec This is an non-standard, partial implementation of the Collection interface,
+ * which only supports modification using the {@code enqueue}, {@code dequeue},
+ * and {@code peek} methods. The Queue does not allow modification of its inner
+ * elements, so {@code add}, {@code remove}, and {@code set} are not implemented.
  * 
  * @author M Morella
  */
-public class FoodQueue implements Cloneable {
-    /** The size of the queue when constructed with the default constructor */
-    private final static int DEFAULT_CAPACITY = 20;
-    /** The number of elements that the queue can contain */
-    final private int capacity;
-    /** An array containing the queue's elements */
-    private Food[] queue;
-    /** The index of the element at the start of the queue. 
-     * This is the element that {@code peek} and {@code dequeue} return */
-    private int front = 0; 
-    /** The index of the element at the end of the queue. 
-     * The {@code enqueue} method inserts elements at {@code rear + 1} */
-    private int rear = -1;
-    /** The number of elements currently in the queue */
-    private int size = 0;
+public class FoodQueue extends AbstractCollection<Food> implements Iterable<Food>, Cloneable {
+    /** The default capacity of FoodQueue elements which do not specify a capacity  */
+    public static final int DEFAULT_CAPACITY = 20;
 
+    private Food[] elements;
+    private int size = 0;
+    private int tail = -1; // FIRST IN - enqueue new elements at tail + 1
+    private int head = 0; // LAST OUT - dequeue elements at head
+    private final int capacity;
+    
+    
+    // Constructors
+    
     /**
-     * Initialize a new queue of foods
-     * 
-     * @param capacity The maximum number of foods that can fit in the array
-     * @param clothes  An optional array of foods to start the stack with
-     */
-    public FoodQueue(int capacity, Food... foods) {
-        this.capacity = capacity;
-        this.queue = new Food[capacity];
-        for (Food f : foods) {
-            this.enqueue(f);
-        }
-    }
-    /**
-     * Initialize a new empty queue of food with the default size of 20
+     * Create a new FoodQueue with no elements and the default capacity of 20
      */
     public FoodQueue() {
-        this(DEFAULT_CAPACITY);
+        this(DEFAULT_CAPACITY, null);
     }
     /**
-     * Access the item at the front of the queue without removing it
+     * Create a FoodQueue from a Collection, with the default capacity of 20
      * 
-     * @return The least recently added piece of Food or {@code null} if the queue is empty
+     * @param clothes A collection of foods, such as another FoodQueue.
      */
-    public Food peek() {
-        if (isEmpty()) {
-            return null;
+    public FoodQueue(Collection<Food> foods) {
+        this(DEFAULT_CAPACITY, foods);
+    }    
+    /**
+     * Create a new FoodQueue with a custom capacity
+     * @param capacity The maximum number of elements the queue can contain
+     */
+    public FoodQueue(int capacity) {
+        this(capacity, null);
+    }
+    /**
+     * Create a new FoodQueue
+     * @param capacity The maximum number of elements the queue can contain
+     * @param clothes A collection of foods, such as another FoodQueue.
+     */
+    public FoodQueue(int capacity, Collection<Food> foods) {
+        this.capacity = capacity;
+        this.tail = -1; // the first element goes at 0;
+        this.head = 0;
+        elements = new Food[capacity];
+
+        if (foods != null) {
+            for (Food f : foods) {
+                this.enqueue(f);
+            }
         }
-        return queue[front];
     }
-    /**
-     * Access the item at the front of the queue, and remove it.
-     * 
-     * @return The least recently added piece of Food or {@code null} if the queue is empty
-     */
-    public Food dequeue() {
-        if (isEmpty()) {
-            return null;
-        }
-        Food pop = queue[front];
-        front = (front + 1) % capacity;
-        size--;
-        return pop;
-    }
-    /**
-     * Insert an item into the end of the queue.
-     * 
-     * @return {@code true} is the insertion is successful, or {@code false} if the stack is full
-     */
+
+    // Modification methods
+
+    /** Add a new element to the tail of the queue */
     public boolean enqueue(Food f) {
         if (isFull()) {
             return false;
         }
-        rear = (rear + 1) % capacity;
-        queue[rear] = f;
+
+        tail = (tail + 1) % capacity;
+        elements[tail] = f;
         size++;
         return true;
     }
-    /** @return the average calories per serving of all the foods in the queue */ 
-    public int getAverageCalories() {
-        int sum = 0;
-        /* Because this class doesn't implement Collections or Iteratable, 
-        performing a "for-each" requires cloning the class and dequeueing each element. */
-        FoodQueue clone = this.clone();
-        while (!clone.isEmpty()) {
-            Food f = clone.dequeue();
-            sum += f.getCalories();
+    /** Retrieve and remove the least recent element from the head of the queue */
+    public Food dequeue() {
+        if (isEmpty()) {
+            return null;
         }
-        return sum;
+        int get = head;
+        head = (head + 1) % capacity;
+        size--;
+        return elements[get];
+    }
+    /** Retrieve the least recent element from the head of the queue without removing it */
+    public Food peek() {
+        return elements[head];
     }
 
-    /** @return the food items with the highest total calories per container */
-    public Food getHighestCalorieFood() {
-        FoodQueue clone = this.clone();
-        Food highest = clone.dequeue();
-        while (!clone.isEmpty()) {
-            Food f = clone.dequeue();
-            if (f.getTotalCalories() > highest.getTotalCalories()) {
-                highest = f;
-            }
-        }
-        return highest;
-    }
-
-    /** @return the maximum number of Food items in the queue */
-    public int getCapacity() {
-        return capacity;
-    }
-    /** @return the current number of Food items in the queue */
-    public int getSize() {
-        return size;
-    }
-    /** @return whether or not the queue is empty */
-    public boolean isEmpty() {
-        return size <= 0;
-    }
-    /** @return whether or not the queue is full */
+    /** @return {@code true} if the Queue has reached its maximum capacity */
     public boolean isFull() {
-        return size == capacity;
+        return (size == capacity);
     }
-    /** A constructor intended for accurately cloning a queue's state */
-    private FoodQueue(int capacity, Food[] queue, int front, int rear, int size) {
-        this.capacity = capacity;
-        this.queue = queue;
-        this.front = front;
-        this.rear = rear;
-        this.size = size;
+    /** @return The maximum number of elements this queue can contain */
+    public int capacity() {
+        return this.capacity;
     }
+
+    // Display Method
+
+    public void displayAllFoods() {
+        for (Food f : this) {
+            System.out.println(" * " + f.toString());
+        }
+    }
+
+
+    // Collection Methods
+
+    @Override
+    public int size() {
+        return this.size;
+    }
+
+    @Override
+    public Iterator<Food> iterator() {
+        return new Iterator<Food>() {
+            private int nextIndex = head; // index of the first element is at tail;
+            private int lastAccessed = -1;
+            @Override
+            public boolean hasNext() {
+                return (lastAccessed != tail);
+            }
+            @Override
+            public Food next() {
+                if (hasNext()) {
+                    lastAccessed = nextIndex;
+                    nextIndex = (nextIndex + 1) % capacity;
+                    return elements[lastAccessed];
+                }
+                throw new IndexOutOfBoundsException();
+            }
+        };
+    }
+
     @Override
     public FoodQueue clone() {
-        return new FoodQueue(capacity, queue.clone(), front, rear, size);
-    }
-
-    public void display() {
-        FoodQueue clone = this.clone();
-        int index = 0;
-        while (!clone.isEmpty() && clone.peek() != null) {
-            Food f = clone.dequeue();
-            System.out.println("Food #" + (++index) + ": " + f.toSimpleString());
-        }
+        return new FoodQueue(this);
     }
 }
