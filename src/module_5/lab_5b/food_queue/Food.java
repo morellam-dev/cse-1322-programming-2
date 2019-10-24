@@ -36,8 +36,8 @@ public class Food implements Cloneable {
     public int getTotalCalories() {
         return calories * servings;
     }
-
-    public String toSimpleString() {
+    @Override
+    public String toString() {
         return String.format("%s - %s calories per serving (%s servings)", name, calories, servings);
     }
 
