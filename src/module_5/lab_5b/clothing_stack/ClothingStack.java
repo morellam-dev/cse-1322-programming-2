@@ -1,135 +1,137 @@
 package module_5.lab_5b.clothing_stack;
 
+import java.util.AbstractCollection;
+import java.util.Collection;
+import java.util.Iterator;
+
 /**
- * ClothingStack
+ * A Collection which implements a fixed-capacity stack of Clothing items. 
+ * Note that this is an non-standard, partial implementation of the Collection interface, 
+ * which only supports modified using the {@code push}, {@code pop}, and {@code peek}. The stack
+ * does not allow random access to its elements, so {@code add} and {@code remove} are not implemented.  
+ * 
  * @author M Morella
  */
-public class ClothingStack implements Cloneable {
-    private Clothing[] stack;
+public class ClothingStack extends AbstractCollection<Clothing> implements Iterable<Clothing>, Cloneable {
+    private static final int DEFAULT_CAPACITY = 20;
+    /** An array representing the elements in the stack */
+    private Clothing[] elements;
+    /** The number of items in the stack. The topmost element is located at index {@code size - 1}. */
+    private int size;
+    /** The maximum number of items the stack can hold; this is the size of the array. */
     private final int capacity;
-    private int size = 0;
-    private int pointer = -1; // The index of the current topmost element
 
     /**
-     * Initialize a new stack of clothes
-     * @param size The maximum number of clothes that can fit in the array
-     * @param clothes An optional array of clothes to start the stack with
-     */
-    public ClothingStack(int capacity, Clothing ... clothes) {
-        this.capacity = capacity;
-        this.stack = new Clothing[capacity];
-        for (Clothing c : clothes) {
-            this.push(c);
-        }
-    }
-    /**
-     * Initialize a new stack of clothes with the default size of 20
+     * Create a new ClothingStack with a capacity of 20
      */
     public ClothingStack() {
-        this(20);
+        this(null);
     }
-
-    /** @return the current number of Clothing items in the stack */
-    public int count() {
-        return pointer + 1;
-    }
-    /** @return the maximum number of Clothing items in the stack */
-    public int capacity() {
-        return capacity;
-    }
-    /** @return whether or not the stack is empty */
-    public boolean isEmpty() {
-        return size == 0;
-    }
-    public boolean isFull() {
-        return size == capacity;
-    }
-
+    
     /**
-     * Access the topmost article without removing it 
-     * @return The topmost piece of Clothing
+     * Create a new ClothingStack with a capacity of 20
+     * 
+     * @param clothes A collection of Clothes, such as another Stack.
      */
-    public Clothing peek() {
-        if (isEmpty()) {
-            return null;
+    public ClothingStack(Collection<Clothing> clothes) {
+        this.capacity = DEFAULT_CAPACITY;
+        this.size = 0;
+        elements = new Clothing[capacity];
+
+        if (clothes != null) {
+            for (Clothing c : clothes) {
+                this.push(c);
+            }
         }
-        return stack[pointer];
     }
-    /**
-     * Access the topmost article, and remove it from the array.
-     * @return The topmost piece of clothing, or {@null if the stack is empty}
-     */
+
+    /** Add an element to the top of the stack */
+    public boolean push(Clothing c) {
+        if (isFull()) {
+            return false;
+        }
+        elements[size++] = c;
+        return true;
+    }
+
+    /** @return the element at the top of the stack, and remove it */
     public Clothing pop() {
         if (isEmpty()) {
             return null;
         }
-        // Return stack[pointer], then decrement
-        size--;
-        return stack[pointer--];
-
+        return elements[--size];
     }
-    /**
-     * Inserts an article of clothing into the stack
-     * @param c The clothing to insert
-     * @return {@code true} if the insertion is successful, 
-     * {@code false} if the stack is full
-     */
-    public boolean push(Clothing c) {
-        // If the stack is full, do nothing.
-        if (count() == capacity()) {
-            return false;
+
+    /** @return the element at the top of the stack, without removing it */
+    public Clothing peek() {
+        if (isEmpty()) {
+            return null;
         }
-        // Increment pointer, then insert c at stack[pointer]
-        stack[++pointer] = c;
-        size++;
-        return true;
+        return elements[size - 1];
     }
 
-    private ClothingStack(int capacity, Clothing[] stack, int pointer, int size) {
-        this.capacity = capacity;
-        this.stack = stack;
-        this.pointer = pointer;
-        this.size = size;
+    @Override
+    public int size() {
+        return this.size;
     }
 
+    /** @return {@code true} if the stack has reached its maximum capacity */
+    public boolean isFull() {
+        return (size == capacity);
+    }
+
+    @Override
+    public Iterator<Clothing> iterator() {
+        return new Iterator<Clothing>() {
+            private int nextIndex = 0; // index of the next
+			@Override
+			public boolean hasNext() {
+				return (nextIndex != size);
+			}
+			@Override
+			public Clothing next() {
+				if (hasNext()) {
+                    return elements[nextIndex++];
+                }
+				throw new IndexOutOfBoundsException();
+			}
+        };
+    }
+
+    @Override
     public ClothingStack clone() {
-        return new ClothingStack(this.capacity(), this.stack, this.pointer, this.size);
-    }
-    /**
-     * Returns all clothes that match a given color
-     * @param color The color to check for (case insensitive)
-     * @return A stack of clothes which all match that color
-     */
-    public ClothingStack matchesColor(String color) {
-        ClothingStack newStack = new ClothingStack(this.capacity());
-        for (int i = 0; i < count(); i++) {
-            Clothing c = stack[i];
-            if (c.getColor().toLowerCase().equals(color.toLowerCase())) {
-                newStack.push(c);
-            }
-        }
-        return newStack;
-    }
-    /**
-     * Returns all clothes that match a given washability value
-     * @param hightemp the kind of clothes to search for
-     * @return A stack of clothes
-     */
-    public ClothingStack matchesWashable(boolean hightemp) {
-        ClothingStack newStack = new ClothingStack(this.capacity());
-        for (int i = 0; i < count(); i++) {
-            Clothing c = stack[i];
-            if (c.isHighTempWashable() == hightemp) {
-                newStack.push(c);
-            }
-        }
-        return newStack;
+        return new ClothingStack(this);
     }
 
-    public void display() {
-        for (int i = 0; i < count(); i++) {
-            Clothing c = stack[i];
-            System.out.println("#" + (i + 1) + ": " + c.toSimpleString());
+    public void displayAllClothes() {
+        System.out.println();
+        for (Clothing c : this) {
+            System.out.println(" * " + c.toString());
         }
+    }
+
+    public ClothingStack filterColor(String color) {
+        ClothingStack filtered = new ClothingStack();
+        for (Clothing c : this) {
+            if (c.getColor().matches(color)) {
+                filtered.push(c);
+            }
+        }
+        return filtered;
+    }
+
+    public ClothingStack filterWashable(boolean machineWashable) {
+        ClothingStack filtered = new ClothingStack();
+        for (Clothing c : this) {
+            if (c.isMachineWashable() == machineWashable) {
+                filtered.push(c);
+            }
+        }
+        return filtered;
+    }
+
+    public static void main(String[] args) {
+        ClothingStack c = new ClothingStack();
+        c.push(new Clothing("Shirt", "Red", true));
     }
 }

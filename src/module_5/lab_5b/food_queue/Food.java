@@ -25,7 +25,7 @@ public class Food implements Cloneable {
         return this.name;
     }
     /** @return The number of calories per serving */
-    public int getCalories() {
+    public int getCaloriesPerServing() {
         return this.calories;
     }
     /** @return The number of servings per container */

@@ -1,5 +1,6 @@
 package module_5.lab_5b.clothing_stack;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -17,37 +18,35 @@ public class ClothingStackTest {
 
     public static void main(String[] args) {
         System.out.println();
-        ClothingStack stackTest1 = new ClothingStack(20, new Clothing[] {
-                new Clothing("shirt", "red", true),
-                new Clothing("shirt", "white", true),
-                new Clothing("shirt", "blue", true),
-                new Clothing("jeans", "blue", false),
-                new Clothing("tuxedo", "black", false),
-                new Clothing("dress shirt", "white", false),
-                new Clothing("hoodie", "red", true)
-            }
-        );
+        ClothingStack stackTest1 = new ClothingStack(Arrays.asList(
+                new Clothing("red", "shirt", true),
+                new Clothing("white", "shirt", true),
+                new Clothing("blue", "shirt", true),
+                new Clothing("blue", "jeans", false),
+                new Clothing("black", "tuxedo", false),
+                new Clothing("white", "dress shirt", false),
+                new Clothing("red", "hoodie", true)
+        ));
         // Show all clothes
         System.out.println("=== CLOTHING STACK ===");
-        stackTest1.display();
+        stackTest1.displayAllClothes();
         pause();
         // Show only "red" clothes
-        System.out.println("=== FILTER CLOTHING STACK – (ONLY REDS) ===");
-        stackTest1.matchesColor("red").display();
+        System.out.println("=== FILTER CLOTHING STACK – (ONLY \"red\") ===");
+        stackTest1.filterColor("red").displayAllClothes();
         pause();
         // Show only hightemp washable clothes
-        System.out.println("=== FILTER CLOTHING STACK – (ONLY HIGH-TEMP) ===");
-        stackTest1.matchesWashable(true).display();
+        System.out.println("=== FILTER CLOTHING STACK – (ONLY machine washable) ===");
+        stackTest1.filterWashable(true).displayAllClothes();
         pause();
         // Demo accessing 3 elements by pop()
         System.out.println("=== RETRIEVE 4 ELEMENTS VIA POP() ===");
         for (int i = 0; i < 4; i++) {
-            System.out.println("POP: " + stackTest1.pop().toSimpleString());
+            System.out.println("POP: " + stackTest1.pop().toString());
         }
-        pause();
         // Show popped stack
         System.out.println("=== CLOTHING STACK (AFTER POP) ===");
-        stackTest1.display();
+        stackTest1.displayAllClothes();
     }
 }
 /* Console output: 

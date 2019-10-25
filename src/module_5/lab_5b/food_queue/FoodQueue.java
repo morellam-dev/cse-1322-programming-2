@@ -105,11 +105,35 @@ public class FoodQueue extends AbstractCollection<Food> implements Iterable<Food
     // Display Method
 
     public void displayAllFoods() {
+        System.out.printf("=== QUEUE WITH %d / %d ELEMENTS ===\n", size, capacity);
         for (Food f : this) {
             System.out.println(" * " + f.toString());
         }
+        System.out.println("AVG CALORIES: " + averageCaloriesPerServing() + " per serving");
+        Food highest = getHighestCalorieFood();
+        System.out.printf("Highest Calorie Food: %s (%d total calories)", highest.getName(), highest.getTotalCalories());
     }
 
+    // Calculation methods
+
+    /** @return average calories per serving of all the foods in the queue */
+    public int averageCaloriesPerServing() {
+        int sum = 0;
+        for (Food f : this) {
+            sum += f.getCaloriesPerServing();
+        }
+        return sum / this.size();
+    }
+    /** @return the food with the highest total calories */
+    public Food getHighestCalorieFood() {
+        Food maximum = this.peek();
+        for (Food f : this) {
+            if (f.getTotalCalories() > maximum.getTotalCalories()) {
+                maximum = f;
+            }
+        }
+        return maximum;
+    }
 
     // Collection Methods
 
