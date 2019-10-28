@@ -1,6 +1,7 @@
 package module_5.assignment_5;
 
 import java.util.Scanner;
+import java.util.StringJoiner;
 
 /**
  * BirdSurveyList
@@ -56,7 +57,8 @@ public class BirdSurvey extends MyLinkedList<BirdSpecies> {
     public int getSpeciesCount() {
         return this.size();
     }
-    /** @return The total number of birds which have been recorded in the survey */
+
+    /** @return the total number of birds which have been recorded in the survey */
     public int getTotalBirdCount() {
         int sum = 0;
         for (BirdSpecies b : this) {
@@ -66,25 +68,32 @@ public class BirdSurvey extends MyLinkedList<BirdSpecies> {
     }
     /** @return a formatted message, displaying a list of the birds spotted so far  */
     public String getReport() {
-        String output = "";
-        System.out.printf("=== %d SPECIES SIGHTED SO FAR (%d TOTAL BIRDS) ===\n", this.getSpeciesCount(), this.getTotalBirdCount());
+        int speciesCount = this.getSpeciesCount();
+        int totalBirds = this.getTotalBirdCount();
+        StringJoiner report = new StringJoiner("\n");
+        report.add(String.format("=== %d SPECIES RECORDED SO FAR (%d TOTAL BIRDS) ===", speciesCount, totalBirds));
         for (BirdSpecies b : this) {
-            output += String.format(" * %s – %d sightings\n", b.getSpecies(), b.getCount());
+            String species = b.getSpecies();
+            int count = b.getCount();
+            report.add(String.format(" * %-20s – %2d sightings", species, count));
         }
-        return output;
+        return report.toString();
     }
 
     // CONSOLE METHODS
 
     /** Prompts the user for input, then returns a string */
     protected static String readString(String prompt) {
-        while (true) {
-            System.out.print(prompt);
-            String input = console.nextLine();
-            if (input.length() > 0) {
-                return input;
-            }
-        }
+        System.out.print(prompt);
+        return console.nextLine();
+    }
+
+    protected static String readStringNonEmpty(String prompt) {
+        String input = "";
+        do {
+            input = readString(prompt);
+        } while (input.length() == 0);
+        return input;
     }
 
     /**
@@ -94,11 +103,12 @@ public class BirdSurvey extends MyLinkedList<BirdSpecies> {
      * @param bird
      */
     public void inputBird(String bird) {
-        if (getCount(bird) == 0) {
+        BirdSpecies b = getBirdSpecies(bird);
+        if (b == null) {
             System.out.printf("Species \"%s\" has not yet been sighted.\n", bird);
-            boolean doContinue = !(readString("Add anyway? (y/N)").matches("[nN]"));
+            boolean doContinue = readString("Add anyway? (y/N) ").matches("[Yy]");
             if (!doContinue) {
-                System.out.printf("\"%s\" was not added\n", bird);
+                System.out.printf("\n\"%s\" was not added. List unchanged.\n", bird);
                 return;
             }
         }
@@ -106,16 +116,18 @@ public class BirdSurvey extends MyLinkedList<BirdSpecies> {
         System.out.printf("You sighted a %s! (%d sightings total)\n", bird, getCount(bird));
     }
 
+    /** 
+     * The main interactive loop for the BirdSurvey application. Repeatedly prompts the user to enter 
+     * birds, displaying the bird list each time. 
+     */
     public void inputBirds() {
         while (true) {
-            System.out.println(this.getReport());
-            System.out.println();
+            System.out.println("\n" + this.getReport() + "\n");
             String input = readString("Enter species (q to exit): ");
             if (input.matches("[qQ]")) {
                 break;
             }
             this.inputBird(input);
-            System.out.println();
         }
     }
 }

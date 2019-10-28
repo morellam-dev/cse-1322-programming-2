@@ -6,7 +6,12 @@ package module_5.assignment_5;
 public class BirdSurveyDemo {
     public static void main(String[] args) {
         BirdSurvey demoOne = new BirdSurvey();
-        demoOne.addBirds("red-tailed hawk", "red-tailed hawk", "red-tailed hawk", "warbler", "hummingbird");
+        // Add example species for demo purposes
+        demoOne.add(new BirdSpecies("wood duck", 0));
+        demoOne.add(new BirdSpecies("brown thrasher", 0));
+        demoOne.add(new BirdSpecies("barn owl", 0));
+        demoOne.add(new BirdSpecies("woodpecker", 0));
+        demoOne.add(new BirdSpecies("goldfinch", 0));
         demoOne.inputBirds();
     }
 }
