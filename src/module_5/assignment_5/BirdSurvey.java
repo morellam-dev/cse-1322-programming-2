@@ -22,24 +22,6 @@ public class BirdSurvey extends MyLinkedList<BirdSpecies> {
         }
         return null;
     }
-    /**
-     * Add the specified bird to the survey.
-     * If that bird's species is not found in the list, 
-     * then ask the user whether they'd still like to add it
-     * @param bird
-     */
-    public void inputBird(String bird) {
-        if (getCount(bird) == 0) {
-            System.out.printf("Species \"%s\" has not yet been sighted.\n", bird);
-            boolean doContinue = readBoolean("Add anyway?", false);
-            if (!doContinue) {
-                System.out.printf("\"%s\" was not added\n", bird);
-                return;
-            }
-        }
-        addBird(bird);
-        System.out.printf("You sighted a %s! (%d sightings total)\n", bird, getCount(bird));
-    }
 
     public void addBird(String bird) {
         bird = bird.toLowerCase().trim();
@@ -59,6 +41,7 @@ public class BirdSurvey extends MyLinkedList<BirdSpecies> {
     }
 
     /**
+     * @param The name of the species to look for
      * @return Return the number of birds counted for the given species
      */
     public int getCount(String species) {
@@ -68,6 +51,30 @@ public class BirdSurvey extends MyLinkedList<BirdSpecies> {
         }
         return b.getCount();
     }
+
+    /** @return the number of unique species which have been recorded */
+    public int getSpeciesCount() {
+        return this.size();
+    }
+    /** @return The total number of birds which have been recorded in the survey */
+    public int getTotalBirdCount() {
+        int sum = 0;
+        for (BirdSpecies b : this) {
+            sum += b.getCount();
+        }
+        return sum;
+    }
+    /** @return a formatted message, displaying a list of the birds spotted so far  */
+    public String getReport() {
+        String output = "";
+        System.out.printf("=== %d SPECIES SIGHTED SO FAR (%d TOTAL BIRDS) ===\n", this.getSpeciesCount(), this.getTotalBirdCount());
+        for (BirdSpecies b : this) {
+            output += String.format(" * %s – %d sightings\n", b.getSpecies(), b.getCount());
+        }
+        return output;
+    }
+
+    // CONSOLE METHODS
 
     /** Prompts the user for input, then returns a string */
     protected static String readString(String prompt) {
@@ -80,48 +87,34 @@ public class BirdSurvey extends MyLinkedList<BirdSpecies> {
         }
     }
 
-    /** Prompts the user to enter "Y" or "N", then returns their choice as a boolean */
-    protected static boolean readBoolean(String prompt, boolean defaultValue) {
-        String def = defaultValue ? "[Y/n]" : "[y/N]";
-        System.out.print(prompt + " " + def + " ");
-        String in = console.nextLine().toLowerCase();
-        if (in.equals("y")) {
-            return true;
-        } else if (in.equals("n")) {
-            return false;
-        } else {
-            return defaultValue;
+    /**
+     * Add the specified bird to the survey. If that bird's species is not found in
+     * the list, then ask the user whether they'd still like to add it
+     * 
+     * @param bird
+     */
+    public void inputBird(String bird) {
+        if (getCount(bird) == 0) {
+            System.out.printf("Species \"%s\" has not yet been sighted.\n", bird);
+            boolean doContinue = !(readString("Add anyway? (y/N)").matches("[nN]"));
+            if (!doContinue) {
+                System.out.printf("\"%s\" was not added\n", bird);
+                return;
+            }
         }
+        addBird(bird);
+        System.out.printf("You sighted a %s! (%d sightings total)\n", bird, getCount(bird));
     }
 
-    public int getSpeciesCount() {
-        return this.size();
-    }
-
-    public int getTotalBirdCount() {
-        int sum = 0;
-        for (BirdSpecies b : this) {
-            sum+= b.getCount();
-        }
-        return sum;
-    }
-
-    public String getReport() {
-        String output = "";
-        System.out.printf("=== %d SPECIES SIGHTED SO FAR (%d TOTAL BIRDS) ===", this.getSpeciesCount(), this.getTotalBirdCount());
-        for (BirdSpecies b : this) {
-            output += String.format("\n * %s – %d sightings", b.getSpecies(), b.getCount());
-        }
-        return output;
-    }
-
-    public static void main(String[] args) {
-        BirdSurvey main = new BirdSurvey();
-        main.addBirds("red-tailed hawk", "red-tailed hawk", "red-tailed hawk", "warbler", "hummingbird");
+    public void inputBirds() {
         while (true) {
-            System.out.println(main.getReport());
+            System.out.println(this.getReport());
             System.out.println();
-            main.inputBird(readString("Enter species: "));
+            String input = readString("Enter species (q to exit): ");
+            if (input.matches("[qQ]")) {
+                break;
+            }
+            this.inputBird(input);
             System.out.println();
         }
     }
