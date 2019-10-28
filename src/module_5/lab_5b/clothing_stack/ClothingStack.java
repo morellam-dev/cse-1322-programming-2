@@ -6,9 +6,10 @@ import java.util.Iterator;
 
 /**
  * A Collection which implements a fixed-capacity stack of Clothing items. 
- * Note that this is an non-standard, partial implementation of the Collection interface, 
- * which only supports modified using the {@code push}, {@code pop}, and {@code peek}. The stack
- * does not allow random access to its elements, so {@code add} and {@code remove} are not implemented.  
+ * @implSpec This is an non-standard, incomplete implementation of the Collection interface, 
+ * which only supports modified using the custom {@code push}, {@code pop}, and {@code peek} methods. 
+ * The stack does not allow random modification to its inner elements, 
+ * so {@code add} and {@code remove} are not implemented.  
  * 
  * @author M Morella
  */
