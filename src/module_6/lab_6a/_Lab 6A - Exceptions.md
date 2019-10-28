@@ -3,14 +3,12 @@
 ## Lab 6A: Exceptions
 
 ### Objectives
-
 To write a program that incorporates throwing an exception and exception handling.  The program should recover from the exception.
 
 ### Problem Statement
-
 Write a program that converts a time from 24-hour notation to 12-hour notation.  The following is a sample interaction between the user and the program: 
 ```
-Enter time in 24-hour notation:*13:07
+Enter time in 24-hour notation: 13:07
 That is the same as: 1:07 PM
 Again? (y/n):  y
 
