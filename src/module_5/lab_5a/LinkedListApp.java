@@ -1,6 +1,5 @@
 package module_5.lab_5a;
 
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.LinkedList;
