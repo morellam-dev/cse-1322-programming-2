@@ -28,7 +28,6 @@ public class FoodQueueApp {
             if (queue.isFull()) {
                 System.out.printf("ADD: Tried to insert \"%s\", but queue can only hold %d elements\n", f.getName(), queue.capacity()); 
             }
-            
         }
         pause("(press enter)", "");
     }
