@@ -28,6 +28,8 @@ public class Clothing {
         return this.color;
     }
 
+    
+
     /** @return whether or not the clothing is machine-washable */
     public boolean getMachineWashable() {
         return this.machineWashable;
@@ -39,6 +41,10 @@ public class Clothing {
 
 
     @Override
+    /**
+     * @return a string representation of the string, like
+     *         {@code "red hoodie (machine-washable)"}
+     */
     public String toString() {
         return color + " " + name 
             + (machineWashable ? " (machine-washable)" : "");

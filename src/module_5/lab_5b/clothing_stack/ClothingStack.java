@@ -6,9 +6,10 @@ import java.util.Iterator;
 
 /**
  * A Collection which implements a fixed-capacity stack of Clothing items. 
+ * 
  * @implSpec This is an non-standard, incomplete implementation of the Collection interface, 
- * which only supports modified using the custom {@code push}, {@code pop}, and {@code peek} methods. 
- * The stack does not allow random modification to its inner elements, 
+ * which only supports modification using the custom {@code push}, {@code pop}, and {@code peek} methods. 
+ * The stack does not allow modification of its inner elements, 
  * so {@code add} and {@code remove} are not implemented.  
  * 
  * @author M Morella
@@ -76,6 +77,10 @@ public class ClothingStack extends AbstractCollection<Clothing> implements Itera
         return this.size;
     }
 
+    public int getCapacity() {
+        return this.capacity;
+    }
+
     /** @return {@code true} if the stack has reached its maximum capacity */
     public boolean isFull() {
         return (size == capacity);
@@ -84,15 +89,15 @@ public class ClothingStack extends AbstractCollection<Clothing> implements Itera
     @Override
     public Iterator<Clothing> iterator() {
         return new Iterator<Clothing>() {
-            private int nextIndex = 0; // index of the next
+            private int nextIndex = size - 1; // index of the next
 			@Override
 			public boolean hasNext() {
-				return (nextIndex != size);
+				return (nextIndex != -1);
 			}
 			@Override
 			public Clothing next() {
 				if (hasNext()) {
-                    return elements[nextIndex++];
+                    return elements[nextIndex--];
                 }
 				throw new IndexOutOfBoundsException();
 			}
