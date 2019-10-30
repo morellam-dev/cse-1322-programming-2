@@ -10,10 +10,12 @@ public class BirdSurvey extends MyLinkedList<BirdSpecies> {
     private static final long serialVersionUID = 4838685580168749376L;
     private static final Scanner console = new Scanner(System.in);
 
-    /** 
-     * Search the list for a BirdSpecies object which matches the given species. 
-     * @return A matching BirdSpecies object, or {@code null} if no such bird exists.
-    */
+    /**
+     * Search the list for a BirdSpecies object which matches the given species.
+     * 
+     * @return A matching BirdSpecies object, or {@code null} if no such bird
+     *         exists.
+     */
     public BirdSpecies getBirdSpecies(String species) {
         species = species.toLowerCase().trim();
         for (BirdSpecies b : this) {
@@ -35,7 +37,7 @@ public class BirdSurvey extends MyLinkedList<BirdSpecies> {
         }
     }
 
-    public void addBirds(String ...birds) {
+    public void addBirds(String... birds) {
         for (String b : birds) {
             addBird(b);
         }
@@ -66,7 +68,10 @@ public class BirdSurvey extends MyLinkedList<BirdSpecies> {
         }
         return sum;
     }
-    /** @return a formatted message, displaying a list of the birds spotted so far  */
+
+    /**
+     * @return a formatted message, displaying a list of the birds spotted so far
+     */
     public String getReport() {
         int speciesCount = this.getSpeciesCount();
         int totalBirds = this.getTotalBirdCount();
@@ -113,12 +118,12 @@ public class BirdSurvey extends MyLinkedList<BirdSpecies> {
             }
         }
         addBird(bird);
-        System.out.printf("You sighted a %s! (%d sightings total)\n", bird, getCount(bird));
+        System.out.printf("\nYou sighted a %s! (%d sightings total)\n\n", bird, getCount(bird));
     }
 
-    /** 
-     * The main interactive loop for the BirdSurvey application. Repeatedly prompts the user to enter 
-     * birds, displaying the bird list each time. 
+    /**
+     * The main interactive loop for the BirdSurvey application. Repeatedly prompts
+     * the user to enter birds, displaying the bird list each time.
      */
     public void inputBirds() {
         while (true) {
@@ -128,6 +133,11 @@ public class BirdSurvey extends MyLinkedList<BirdSpecies> {
                 break;
             }
             this.inputBird(input);
+            pause();
         }
+    }
+
+    public static void pause() {
+        readString("(Press enter to continue...)");
     }
 }
