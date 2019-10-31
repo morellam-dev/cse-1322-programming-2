@@ -6,9 +6,11 @@ package module_6.lab_6a;
 public class Time24Hour {
     protected final int hours;
     protected final int minutes;
+    
     /**
      * Create a new Time24Hour object, representing a time between (00:00 and 23:59)
      * 
+     * @throws TimeFormatException If the time is not within the given range 
      * @hours A number of hours in range [0, 24)
      * @minutes A number of minutes within range [0, 60)
      */
@@ -19,11 +21,12 @@ public class Time24Hour {
             throw new TimeFormatException("Error: " + this.toString() + " is out of bounds [00:00–23:59]");
         }
     }
-
+    /** @return the first component of the time – the number of hours */
     public int getHours() {
         return this.hours;
     }
 
+    /** @return the second component of the time – the number of hours */
     public int getMinutes() {
         return this.minutes;
     }
@@ -36,11 +39,14 @@ public class Time24Hour {
      */
     public static Time24Hour parseTime(String time) throws TimeFormatException {
         int hours, minutes;
+        String[] components = time.split(":", 2); // "12:34" => [12, 34];
+        if (components.length != 2) {
+            throw new TimeFormatException("Error: time must be in the format \"xx:xx\"");
+        }
         try {
-            String[] components = time.split(":", 2); // "12:34" => [12, 34];
             hours = Integer.parseInt(components[0]);
             minutes = Integer.parseInt(components[1]);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             throw new TimeFormatException("Error: \"" + time + "\" is not a valid 24-hour time (ex. \"12:34\")");
         }
         return new Time24Hour(hours, minutes);
