@@ -40,8 +40,8 @@ public class TimeConverterApp {
         System.out.println("\n"+
             "===================================================\n" +
             "|                                                 |\n" +
-            "|        Thank you! The app will now exit.        |\n" +
-            "|                      :3 Have a nice day :3      |\n" +
+            "|      Thank you! The program will now exit.      |\n" +
+            "|                           Have a nice day!      |\n" +
             "|                                                 |\n" +
             "===================================================\n");
         System.exit(0);
