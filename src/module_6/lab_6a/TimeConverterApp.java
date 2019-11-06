@@ -31,7 +31,7 @@ public class TimeConverterApp {
                 break;
             }
             try {
-                Time24Hour t = Time24Hour.parseTime(input);
+                Time t = Time.parseTime(input);
                 System.out.println("That is the same as " + t.get12HourTime());
             } catch (TimeFormatException e) {
                 System.err.println(e.getMessage());

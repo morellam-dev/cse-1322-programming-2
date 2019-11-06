@@ -3,7 +3,7 @@ package module_6.lab_6a;
 /**
  * Represents a time in a 24-hour format as a number of hours and minutes. Ranges from [00:00 and 23:59]
  */
-public class Time24Hour {
+public class Time {
     protected final int hours;
     protected final int minutes;
     
@@ -14,7 +14,7 @@ public class Time24Hour {
      * @hours A number of hours in range [0, 24)
      * @minutes A number of minutes within range [0, 60)
      */
-    public Time24Hour(int hours, int minutes) throws TimeFormatException {
+    public Time(int hours, int minutes) throws TimeFormatException {
         this.hours = hours % 24;
         this.minutes = minutes;
         if (hours < 0 || 24 <= hours || minutes < 0 || 60 <= minutes) {
@@ -37,7 +37,7 @@ public class Time24Hour {
      * @param time A string formatted like {@code "12:34"}, representing a 24-hour time
      * @throws TimeFormatException if time cannot be parsed, or is out of bounds.
      */
-    public static Time24Hour parseTime(String time) throws TimeFormatException {
+    public static Time parseTime(String time) throws TimeFormatException {
         int hours, minutes;
         String[] components = time.split(":", 2); // "12:34" => [12, 34];
         if (components.length != 2) {
@@ -49,7 +49,7 @@ public class Time24Hour {
         } catch (NumberFormatException e) {
             throw new TimeFormatException("Error: \"" + time + "\" is not a valid 24-hour time (ex. \"12:34\")");
         }
-        return new Time24Hour(hours, minutes);
+        return new Time(hours, minutes);
     }
 
     @Override
