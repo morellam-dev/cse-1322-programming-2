@@ -15,7 +15,7 @@ public class Time {
      * @minutes A number of minutes within range [0, 60)
      */
     public Time(int hours, int minutes) throws TimeFormatException {
-        this.hours = hours % 24;
+        this.hours = hours;
         this.minutes = minutes;
         if (hours < 0 || 24 <= hours || minutes < 0 || 60 <= minutes) {
             throw new TimeFormatException("Error: " + this.toString() + " is out of bounds [00:00–23:59]");
