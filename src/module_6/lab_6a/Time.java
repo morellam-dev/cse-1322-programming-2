@@ -39,7 +39,7 @@ public class Time {
      */
     public static Time parseTime(String time) throws TimeFormatException {
         int hours, minutes;
-        String[] components = time.split(":", 2); // "12:34" => [12, 34];
+        String[] components = time.split(":|\\.", 2); // "12:34" => [12, 34];
         if (components.length != 2) {
             throw new TimeFormatException("Error: time must be in the format \"xx:xx\"");
         }
