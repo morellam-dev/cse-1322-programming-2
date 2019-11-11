@@ -4,7 +4,7 @@
 
 ### Objectives
 
-To write a program applying the concepts of file input /output. 
+To write a program applying the concepts of file input /output.
 
 ### Problem Statement
 
@@ -14,4 +14,4 @@ Hint: Read each line from the file and then display the line in the text area us
 
 ### What to Turn In
 
-Follow submission guidelines on this page: http://ccse.kennesaw.edu/fye/Submission%20Guidelines.php
+Follow submission guidelines on this page: [http://ccse.kennesaw.edu/fye/Submission%20Guidelines.php](http://ccse.kennesaw.edu/fye/Submission%20Guidelines.php)
