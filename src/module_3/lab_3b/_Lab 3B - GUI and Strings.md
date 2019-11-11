@@ -10,15 +10,10 @@ To write a program illustrating how to process strings from a GUI interface.
 
 ### Problem Statement
 
-Write a program that displays a window with two text fields, a click button and a label. The program should allow your user to enter a number (entered as text) in each of the text fields, then click the button to add the two numbers; finally displaying the sum in your label. 
+Write a program that displays a window with two text fields, a click button and a label. The program should allow your user to enter a number (entered as text) in each of the text fields, then click the button to add the two numbers; finally displaying the sum in your label.
 
 ### What to Turn In
 
-Please include the text files you used for your program in your submission so the instructor can run the program easily. 
+Please include the text files you used for your program in your submission so the instructor can run the program easily.
 
-Follow submission guidelines on this page: http://ccse.kennesaw.edu/fye/Submission%20Guidelines.php
-
----
-Assignment converted to Markdown by Max Morella
-
-Original file: https://ccse.kennesaw.edu/fye/1322_labs_assignments.php
+Follow submission guidelines on this page: [http://ccse.kennesaw.edu/fye/Submission%20Guidelines.php](http://ccse.kennesaw.edu/fye/Submission%20Guidelines.php)

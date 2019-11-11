@@ -1,8 +1,8 @@
-## CSSE 1322L Module 2 Assignment 
+# CSSE 1322L Module 2
 
-# Assignment 2A and 2B
+## Assignment 2A and 2B
 
-For the problem statement below, you must write the pseudocode and the source code for each assignment. The pseudocode must be complete and following the standards listed at https://ccse.kennesaw.edu/fye/pseudocode/pseudocodeguide.php
+For the problem statement below, you must write the pseudocode and the source code for each assignment. The pseudocode must be complete and following the standards listed at [https://ccse.kennesaw.edu/fye/pseudocode/pseudocodeguide.php](https://ccse.kennesaw.edu/fye/pseudocode/pseudocodeguide.php)
 
 ## Problem Statement
 
@@ -10,14 +10,14 @@ Write an abstract class called `Vacation` that includes three class variables na
 
 This class has two non-abstract subclasses, each with their own class variables:
 
-* All-Inclusive Vacation:**
-    * brand (such as ClubMed, Delta Vacations, etc.)
-    * rating (number of stars)
-    * total cost (all-inclusive means that there is one price for all expenses on the trip).
+* All-Inclusive Vacation:
+  * brand (such as ClubMed, Delta Vacations, etc.)
+  * rating (number of stars)
+  * total cost (all-inclusive means that there is one price for all expenses on the trip).
 
 * Piecemeal Vacation:
-    * list of expenses (hotel, meal, airfare, etc.).
-    * list of corresponding costs (hotel cost, meal cost, airfare cost, etc.).
+  * list of expenses (hotel, meal, airfare, etc.).
+  * list of corresponding costs (hotel cost, meal cost, airfare cost, etc.).
 
 (Both of these class variables must be an array, or similar data structure.)
 
@@ -35,7 +35,7 @@ Now make sure that your code is the best it can be. Check your formatting, promp
 
 *The source code will be due the following week, so wait to receive feedback on the pseudocode before proceeding on this assignment.*
 
-### Review your pseudocode:
+### Review your pseudocode
 
 After turning in your pseudocode, you will receive some feedback and a grade. Make sure that you correct any logical errors before beginning to write your source code.
 
@@ -55,4 +55,4 @@ Now make sure that your code is the best it can be.  Check your formatting, pro
 
 ## What to Turn In
 
-Follow submission guidelines on this page: https://ccse.kennesaw.edu/fye/submissionguidelines.php
+Follow submission guidelines on this page: [http://ccse.kennesaw.edu/fye/Submission%20Guidelines.php](http://ccse.kennesaw.edu/fye/Submission%20Guidelines.php)

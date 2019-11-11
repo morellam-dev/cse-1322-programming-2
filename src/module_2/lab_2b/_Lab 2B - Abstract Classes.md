@@ -1,4 +1,4 @@
-# CSE1322 -- Lab 2B -- Abstract Classes and Interfaces
+# CSE 1322L -- Lab 2B -- Abstract Classes and Interfaces
 
 _This lab may contain intentional minor errors; they should be reasonably easy to find and exist so that you must think as you go through the lab.  Like many things in life, "trust but verify."  Ideas will always be correct; only minor code and syntax may be incorrect._
 
@@ -10,7 +10,7 @@ To write a program using classes to demonstrate how abstract classes and interfa
 
 ### Problem Statement
 
-Write a class named Octagon that extends the abstract class `GeometricObject` and implements the interfaces `Comparable` and `Cloneable`. Assume that all eight sides of the octagon are of equal size. The area can be computed using the following formula: 
+Write a class named Octagon that extends the abstract class `GeometricObject` and implements the interfaces `Comparable` and `Cloneable`. Assume that all eight sides of the octagon are of equal size. The area can be computed using the following formula:
 
  `area = (2+4/sqrt(2))*side*side`
 
@@ -18,8 +18,4 @@ Write a test program that creates an `Octagon` object with the side value 8 and 
 
 ### What to Turn In
 
-Follow submission guidelines on this page: http://ccse.kennesaw.edu/fye/Submission%20Guidelines.php
-
----
-##### Document converted to Markdown by Max Morella
-Original file: https://ccse.kennesaw.edu/fye/1322_labs_assignments.php
+Follow submission guidelines on this page: [http://ccse.kennesaw.edu/fye/Submission%20Guidelines.php](http://ccse.kennesaw.edu/fye/Submission%20Guidelines.php)

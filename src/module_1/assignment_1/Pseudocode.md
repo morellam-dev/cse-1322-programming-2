@@ -1,15 +1,14 @@
-Max Morella
-
-## Assignment 1A (Pseudocode)
+# Max Morella - Assignment 1A (Pseudocode)
 
 See Java implementation and live demo at [repl.it](https://repl.it/@MaxMorella/Assignment-1-Tests-and-TestManager)
 
-#### TestsPseudocode.txt
+## TestsPseudocode.txt
+
 ```java
     // A data type to store a student's test scores
 CLASS Tests
     BEGIN
-    CREATE firstName // string: The student's first name 
+    CREATE firstName // string: The student's first name
     CREATE lastName // string:  The student's last name
     CREATE scores // int[]: The student's test scores
 
@@ -75,27 +74,27 @@ CLASS Tests
         IF (average < 60)
             RETURN "F"
         IF (60 <= average < 70)
-            RETURN "D"                           
+            RETURN "D"
         IF (70 <= average < 80)
             RETURN "C"
         IF (80 <= average < 90)
-            RETURN "B"        
+            RETURN "B"
         IF (90 <= average)
             RETURN "A"
     END METHOD
-    
     // Return a simple string with all the relevant data
     // ex. "NAME: Stephen Strange - SCORES: [98 47 85 79 82] - AVG: 78.0 - GRADE: C"
     METHOD toString()
-        RETURN "NAME: " + getFullName() + ", " 
-                + "SCORES: " + getScoreList() + ", " 
-                + "AVG: " + getAverage() + ", " 
-                + "GRADE: " + getLetterGrade() 
+        RETURN "NAME: " + getFullName() + ", "
+                + "SCORES: " + getScoreList() + ", "
+                + "AVG: " + getAverage() + ", "
+                + "GRADE: " + getLetterGrade()
     END METHOD
 END CLASS
 ```
 
-#### TestManagerPseudocode.txt
+## TestManagerPseudocode.txt
+
 ```java
     // A program to handle and display a class of students and their test scores
 CLASS TestManager

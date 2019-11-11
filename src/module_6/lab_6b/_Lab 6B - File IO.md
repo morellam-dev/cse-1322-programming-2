@@ -1,4 +1,4 @@
-# CSE1322 - Java Lab 6B - File I/O
+# CSE 1322L - Java Lab 6B - File I/O
 
 ## Lab 6B: File I/O
 

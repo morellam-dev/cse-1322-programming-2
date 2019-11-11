@@ -1,4 +1,4 @@
-# CSE1322 - Java Lab 7A - Parallelism
+# CSE 1322L - Java Lab 7A - Parallelism
 
 ## Lab 7A: Parallelism
 
@@ -12,4 +12,4 @@ Write an application that uses multithreading to compute the sum of the integers
 
 ### What to Turn In
 
-Follow submission guidelines on this page: http://ccse.kennesaw.edu/fye/Submission%20Guidelines.php
+Follow submission guidelines on this page: [http://ccse.kennesaw.edu/fye/Submission%20Guidelines.php](http://ccse.kennesaw.edu/fye/Submission%20Guidelines.php)

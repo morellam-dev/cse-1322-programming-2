@@ -1,4 +1,4 @@
-# CSE1322 - Java Lab 5A - ArrayList and Linked List
+# CSE 1322L - Java Lab 5A - ArrayList and Linked List
 
 _This lab may contain intentional minor errors; they should be reasonably easy to find and exist so that you must think as you go through the lab.  Like many things in life, "trust but verify."  Ideas will always be correct; only minor code and syntax may be incorrect._
 
@@ -16,4 +16,4 @@ Write a program that includes a method that returns the sum of all the elements 
 
 ### What to Turn In
 
-Follow submission guidelines on this page: http://ccse.kennesaw.edu/fye/Submission%20Guidelines.php
+Follow submission guidelines on this page: [http://ccse.kennesaw.edu/fye/Submission%20Guidelines.php](http://ccse.kennesaw.edu/fye/Submission%20Guidelines.php)
