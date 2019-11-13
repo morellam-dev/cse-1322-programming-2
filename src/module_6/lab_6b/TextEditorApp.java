@@ -1,5 +1,4 @@
 package module_6.lab_6b;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -37,7 +36,8 @@ public class TextEditorApp extends JFrame {
             }
         });
         // Create and show GUI
-        JPanel topBar = new JPanel(new FlowLayout());
+        JPanel topBar = new JPanel();
+        topBar.setLayout(new BoxLayout(topBar, BoxLayout.X_AXIS));
         topBar.add(pathField);
         topBar.add(loadButton);
         topBar.add(saveButton);
@@ -75,7 +75,7 @@ public class TextEditorApp extends JFrame {
                 displayAlert("Unable to read file at " + file.getPath());
             }
         }
-        setTitle("Editing " + file.getName());
+        setTitle("Text Editor - Editing " + file.getName());
         textField.setEnabled(true);
         saveButton.setEnabled(true);
     }
