@@ -1,5 +1,6 @@
 package module_7.assignment_7;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -16,14 +17,13 @@ public class BubbleSortTest {
     }
     /** @return the time (in milliseconds) that the operation took */
     public static int parallelTrial(int[] arr) {
-        int[] sorted = arr.clone();
-        int duration = (int) System.currentTimeMillis();
         int processors = Runtime.getRuntime().availableProcessors();
+        int duration = (int) System.currentTimeMillis();
         // TIMER START
-        BubbleSort.bubbleSortParallel(sorted);
+        int[] sorted = BubbleSort.sort(arr);
         // TIMER STOP
         duration = (int) System.currentTimeMillis() - duration;
-        boolean success = BubbleSort.isArraySorted(sorted);
+        boolean success = isArraySorted(sorted) && arraysSameElements(arr, sorted);
 
         System.out.printf("%15s %s (took %.2f s) (%d threads)\n", "PARALLEL SORT:", success ? "success" : "failed", 
                 (double) duration / 1000, processors);
@@ -32,13 +32,12 @@ public class BubbleSortTest {
 
     /** @return the time (in milliseconds) that the operation took */
     public static int serialTrial(int[] arr) {
-        int[] sorted = arr.clone();
         int duration = (int) System.currentTimeMillis();
         // TIMER START
-        BubbleSort.bubbleSortSerial(sorted);
+        int[] sorted = BubbleSort.sortSerial(arr);
         // TIMER STOP
         duration = (int) System.currentTimeMillis() - duration;
-        boolean success = BubbleSort.isArraySorted(sorted);
+        boolean success = isArraySorted(sorted) && arraysSameElements(arr, sorted);
         System.out.printf("%15s %s (took %.2f s) (1 thread )\n", "SERIAL SORT:", success ? "success" : "failed", (double)duration / 1000);
         return duration;
     }
@@ -79,7 +78,7 @@ public class BubbleSortTest {
         double parallelAverage = averageArray(parallelResults);
         System.out.printf("%15S %.2f s\n", "PARALLEL AVG TIME:", (double) parallelAverage / 1000);
         System.out.printf("%15S %.2f s\n", "SERIAL AVG TIME:", (double) serialAverage / 1000);
-        System.out.printf("Parallel sort was %.2f times faster\n", ((double)serialAverage / parallelAverage));
+        System.out.printf("Parallel sort was %.2f times as fast as serial sort\n", ((double)serialAverage / parallelAverage));
         System.out.println();
     }
 
@@ -95,6 +94,25 @@ public class BubbleSortTest {
             System.in.read();
             System.out.println();
         } catch (java.io.IOException e) {}
+    }
+
+    /** @return true if the arrays are identical after sorting (i.e. they start and end with the same elements) */
+    public static boolean arraysSameElements(int[] arr1, int[] arr2) {
+        arr1 = arr1.clone();
+        arr2 = arr2.clone();
+        Arrays.sort(arr1); 
+        Arrays.sort(arr2);
+        return Arrays.equals(arr1, arr2);
+    }
+    
+    /** @return {@code true} if all elements within the given range are sorted */
+    public static boolean isArraySorted(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (arr[i] > arr[i + 1]) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static void main(String[] args) {
