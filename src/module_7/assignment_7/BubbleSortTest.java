@@ -3,10 +3,24 @@ package module_7.assignment_7;
 import java.util.Arrays;
 import java.util.Random;
 
+import java.time.Duration;
+
 /**
- * BubbleSortTest
+ * Performs verbose experiments, comparing the speed at which the serial and
+ * parallel bubblesort algorithms can sort a large array of random integers.
+ * 
+ * @author M Morella
+ * @implSpec On my own dual-core machine, parallel sorting only begins to
+ *           outperform the serial algorithm at array sizes above 40,000 items.
  */
 public class BubbleSortTest {
+    /**
+     * Generates an array of random integers.
+     * 
+     * @param size  The length of the array to generate
+     * @param bound The upper bound (exclusive) of the random integers
+     * @return An array with {@code size} elements within the range {@code [0, bound)}
+     */
     public static int[] generateRandomArray(int size, int bound) {
         Random random = new Random();
         int[] arr = new int[size];
@@ -15,45 +29,62 @@ public class BubbleSortTest {
         }
         return arr;
     }
-    /** @return the time (in milliseconds) that the operation took */
-    public static int parallelTrial(int[] arr) {
+    /** 
+     * Determines the length of time required to sort an array using the parallel algorithm
+     * @return the time (in milliseconds) that the operation took 
+     */
+    public static long parallelTrial(int[] arr) {
         int processors = Runtime.getRuntime().availableProcessors();
-        int duration = (int) System.currentTimeMillis();
+        int[] sorted = arr.clone();
         // TIMER START
-        int[] sorted = BubbleSort.sort(arr);
+        long startTime = System.nanoTime();
+        BubbleSort.parallelSort(sorted);
+        long endTime = System.nanoTime();
         // TIMER STOP
-        duration = (int) System.currentTimeMillis() - duration;
+        double durationSeconds = (double)Duration.ofNanos(endTime - startTime).toMillis() / 1000;
         boolean success = isArraySorted(sorted) && arraysSameElements(arr, sorted);
-
-        System.out.printf("%15s %s (took %.2f s) (%d threads)\n", "PARALLEL SORT:", success ? "success" : "failed", 
-                (double) duration / 1000, processors);
-        return duration;
+        System.out.printf("%15s %s (took %.2f s) (%d threads)\n", 
+                "PARALLEL SORT:", success ? "success" : "failed", durationSeconds, processors);
+        return Duration.ofNanos(endTime - startTime).toMillis();
     }
 
-    /** @return the time (in milliseconds) that the operation took */
-    public static int serialTrial(int[] arr) {
-        int duration = (int) System.currentTimeMillis();
+    /**
+     * Determines the length of time required to sort an array using the serial algorithm
+     * @return the time (in milliseconds) that the operation took
+     */
+    public static long serialTrial(int[] arr) {
+        int[] sorted = arr.clone();
         // TIMER START
-        int[] sorted = BubbleSort.sortSerial(arr);
+        long startTime = System.nanoTime();
+        BubbleSort.serialSort(sorted);
+        long endTime = System.nanoTime();
         // TIMER STOP
-        duration = (int) System.currentTimeMillis() - duration;
+
         boolean success = isArraySorted(sorted) && arraysSameElements(arr, sorted);
-        System.out.printf("%15s %s (took %.2f s) (1 thread )\n", "SERIAL SORT:", success ? "success" : "failed", (double)duration / 1000);
-        return duration;
+        double durationSeconds = (double)Duration.ofNanos(endTime - startTime).toMillis() / 1000;
+        System.out.printf("%15s %s (took %.2f s) (%d threads)\n", 
+                "SERIAL SORT:", success ? "success" : "failed", durationSeconds, 1);
+        return Duration.ofNanos(endTime - startTime).toMillis();
     }
 
-    /** @return a random array with the given bounds */
-    public static int[] generateArray(int size, int bound) {
-        int duration = (int) System.currentTimeMillis();
+    /**
+     * A verbose wrapper for the {@code  generateRandomArray} method, which prints the 
+     * size of the array, and the amount of time required to generate it.
+     * 
+     * @return a random array with the given bounds
+     */
+    private static int[] generateRandomArrayTimed(int size, int bound) {
+        long startTime = System.nanoTime();
         int[] array = generateRandomArray(size, bound);
-        duration = (int) System.currentTimeMillis() - duration;
-        System.out.printf("%15s %,d (took %.2f s)\n", "ARRAY SIZE:", size, (double) duration / 1000);
+        long endTime = System.nanoTime();
+        double durationSeconds = (double)Duration.ofNanos(endTime - startTime).toMillis() / 1000;
+        System.out.printf("%15s %,d (took %.3f s)\n", "ARRAY SIZE:", size, durationSeconds);
         return array;
     }
 
-    public static double averageArray(int[] arr) {
+    public static double averageArray(long[] arr) {
         int sum = 0;
-        for (int num : arr) {
+        for (long num : arr) {
             sum += num;
         }
         return (double)sum / arr.length;
@@ -61,34 +92,36 @@ public class BubbleSortTest {
 
     public static void timeTest(int trials, int size, int bound) {
 
-        int[] serialResults = new int[trials];
-        int[] parallelResults = new int[trials];
+        long[] serialResults = new long[trials];
+        long[] parallelResults = new long[trials];
         for (int i = 0; i < trials; i++) {
             System.out.println();
 
             System.out.printf("==== TRIAL #%d ====\n", i + 1);
-            int[] array = generateArray(size, bound);
-            parallelResults[i] = parallelTrial(array);
+            int[] array = generateRandomArrayTimed(size, bound);
             serialResults[i] = serialTrial(array);
+            System.gc();
+            parallelResults[i] = parallelTrial(array);
+            System.gc();
             sleep(500);            
         }
         System.out.println();
         System.out.printf("==== TEST RESULTS (%,d elements) ====\n", size);
         double serialAverage = averageArray(serialResults);
         double parallelAverage = averageArray(parallelResults);
-        System.out.printf("%15S %.2f s\n", "PARALLEL AVG TIME:", (double) parallelAverage / 1000);
-        System.out.printf("%15S %.2f s\n", "SERIAL AVG TIME:", (double) serialAverage / 1000);
-        System.out.printf("Parallel sort was %.2f times as fast as serial sort\n", ((double)serialAverage / parallelAverage));
+        System.out.printf("  %19S %.2f s\n", "PARALLEL AVG TIME:", (double) parallelAverage / 1000);
+        System.out.printf("  %19S %.2f s\n", "SERIAL AVG TIME:", (double) serialAverage / 1000);
+        System.out.printf("Parallel sort took %.2f times as long as serial sort\n", ((double)parallelAverage / serialAverage));
         System.out.println();
     }
 
-    public static void sleep(long millis) {
+    private static void sleep(long millis) {
         try {
             Thread.sleep(millis);
         } catch (InterruptedException e) {}
     }
 
-    public static void pause() {
+    private static void pause() {
         try {
             System.out.print("Press enter to continue...");
             System.in.read();
@@ -96,13 +129,13 @@ public class BubbleSortTest {
         } catch (java.io.IOException e) {}
     }
 
-    /** @return true if the arrays are identical after sorting (i.e. they start and end with the same elements) */
-    public static boolean arraysSameElements(int[] arr1, int[] arr2) {
-        arr1 = arr1.clone();
-        arr2 = arr2.clone();
-        Arrays.sort(arr1); 
-        Arrays.sort(arr2);
-        return Arrays.equals(arr1, arr2);
+    /** @return true if the arrays are identical after sorting (i.e. they contain the same elements) */
+    public static boolean arraysSameElements(int[] a1, int[] a2) {
+        a1 = a1.clone();
+        a2 = a2.clone();
+        Arrays.sort(a1); 
+        Arrays.sort(a2);
+        return Arrays.equals(a1, a2);
     }
     
     /** @return {@code true} if all elements within the given range are sorted */
@@ -123,5 +156,7 @@ public class BubbleSortTest {
         timeTest(10, 40000, 10);
         pause();
         timeTest(10, 80000, 10);
+        pause();
+        timeTest(10, 100000, 10);
     }
 }
