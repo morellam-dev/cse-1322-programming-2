@@ -1,6 +1,6 @@
-# ProgrammingProblemSolving-II
+# cse-1322-programming-2
 
-Code written for CSSE 1322 / 1322L
+Code written for CSE 1322 / 1322L
 
 M Morella - Fall 2019
 
